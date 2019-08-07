@@ -125,7 +125,7 @@ const Home = () => {
 			</SubSection>
 			<FooterSection>
 				<Text2 att2={true}>WooJoo Market</Text2>
-				<Text2 att3={true}>© 2019 Jongho James Kim All Rights Reserved</Text2>
+				<Text2 att3={true}>© 2019 Jong-Ho James Kim All Rights Reserved</Text2>
 			</FooterSection>
 		</HomeComponent>
 	);
