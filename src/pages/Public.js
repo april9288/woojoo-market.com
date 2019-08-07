@@ -1,12 +1,13 @@
 import React from 'react';
 
-import Nav from './Nav';
+import Nav from '../components/public/Nav';
+import Home from '../components/public/Home';
 
 const Public = () => {
 	return (
 		<section>
 			<Nav />
-			<h1>Public Page!!!</h1>
+			<Home />
 		</section>
 	);
 };
