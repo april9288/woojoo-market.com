@@ -1,88 +1,90 @@
 {
-	"name": "bada-market",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"build": "webpack --config webpack.prod.js",
-		"test": "jest",
-		"test:w": "jest --watchAll",
-		"test:c": "jest --coverage",
-		"dev:watch": "webpack -w --config webpack.dev.js",
-		"dev:server": "webpack-dev-server --open --config webpack.dev.js"
-	},
-	"engine": {
-		"node": "10.16.0"
-	},
-	"author": "Jong-Ho James Kim",
-	"license": "ISC",
-	"babel": {
-		"presets": [
-			"@babel/preset-env",
-			"@babel/preset-react"
-		],
-		"plugins": [
-			"@babel/plugin-syntax-dynamic-import",
-			[
-				"@babel/plugin-transform-runtime",
-				{
-					"regenerator": true
-				}
-			]
-		]
-	},
-	"jest": {
-		"setupFilesAfterEnv": [
-			"<rootDir>src/setupTests.js"
-		],
-		"moduleNameMapper": {
-			"\\.(css|less)$": "identity-obj-proxy"
-		}
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged"
-		}
-	},
-	"dependencies": {
-		"@babel/runtime": "^7.5.5",
-		"axios": "^0.19.0",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-router-dom": "^5.0.1",
-		"styled-components": "^4.3.2"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.5.5",
-		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
-		"@babel/plugin-transform-runtime": "^7.5.5",
-		"@babel/preset-env": "^7.5.5",
-		"@babel/preset-react": "^7.0.0",
-		"babel-jest": "^24.8.0",
-		"babel-loader": "^8.0.6",
-		"brotli-webpack-plugin": "^1.1.0",
-		"compression-webpack-plugin": "^2.0.0",
-		"css-loader": "^2.1.1",
-		"dotenv-webpack": "^1.7.0",
-		"enzyme": "^3.10.0",
-		"enzyme-adapter-react-16": "^1.14.0",
-		"eslint": "^6.1.0",
-		"eslint-config-airbnb": "^17.1.1",
-		"eslint-config-prettier": "^6.0.0",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-react": "^7.14.3",
-		"husky": "^3.0.1",
-		"identity-obj-proxy": "^3.0.0",
-		"jest": "^24.8.0",
-		"jest-cli": "^24.8.0",
-		"prettier": "1.18.2",
-		"pretty-quick": "^1.11.1",
-		"react-test-renderer": "^16.8.6",
-		"style-loader": "^0.23.1",
-		"webpack": "^4.36.1",
-		"webpack-bundle-analyzer": "^3.3.2",
-		"webpack-cli": "^3.3.6",
-		"webpack-dev-server": "^3.7.2",
-		"webpack-merge": "^4.2.1"
-	}
+    "name": "bada-market",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --config webpack.prod.js",
+        "test": "jest",
+        "test:w": "jest --watchAll",
+        "test:c": "jest --coverage",
+        "dev:watch": "webpack -w --config webpack.dev.js",
+        "dev:server": "webpack-dev-server --open --config webpack.dev.js"
+    },
+    "engine": {
+        "node": "10.16.0"
+    },
+    "author": "Jong-Ho James Kim",
+    "license": "ISC",
+    "babel": {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ],
+        "plugins": [
+            "@babel/plugin-syntax-dynamic-import",
+            [
+                "@babel/plugin-transform-runtime",
+                {
+                    "regenerator": true
+                }
+            ]
+        ]
+    },
+    "jest": {
+        "setupFilesAfterEnv": [
+            "<rootDir>src/setupTests.js"
+        ],
+        "moduleNameMapper": {
+            "\\.(css|less)$": "identity-obj-proxy"
+        }
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.5.5",
+        "axios": "^0.19.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-router-dom": "^5.0.1",
+        "styled-components": "^4.3.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.5.5",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/plugin-transform-runtime": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "@babel/preset-react": "^7.0.0",
+        "babel-jest": "^24.8.0",
+        "babel-loader": "^8.0.6",
+        "brotli-webpack-plugin": "^1.1.0",
+        "compression-webpack-plugin": "^2.0.0",
+        "css-loader": "^2.1.1",
+        "dotenv-webpack": "^1.7.0",
+        "enzyme": "^3.10.0",
+        "enzyme-adapter-react-16": "^1.14.0",
+        "eslint": "^6.1.0",
+        "eslint-config-airbnb": "^17.1.1",
+        "eslint-config-prettier": "^6.0.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-react": "^7.14.3",
+        "husky": "^3.0.1",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^24.8.0",
+        "jest-cli": "^24.8.0",
+        "prettier": "1.18.2",
+        "pretty-quick": "^1.11.1",
+        "react-test-renderer": "^16.8.6",
+        "style-loader": "^0.23.1",
+        "webpack": "^4.36.1",
+        "webpack-bundle-analyzer": "^3.3.2",
+        "webpack-cli": "^3.3.6",
+        "webpack-dev-server": "^3.7.2",
+        "webpack-merge": "^4.2.1"
+    }
 }

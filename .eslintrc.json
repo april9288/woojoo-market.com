@@ -16,5 +16,8 @@
         "sourceType": "module"
     },
     "plugins": ["react", "prettier"],
-    "rules": {}
+    "rules": {
+        "react/jsx-indent": [true],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    }
 }

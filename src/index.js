@@ -6,8 +6,8 @@ import App from './App.js';
 import './index.css';
 
 ReactDOM.render(
-	<ContextProvider>
-		<App />
-	</ContextProvider>,
-	document.getElementById('root')
+    <ContextProvider>
+        <App />
+    </ContextProvider>,
+    document.getElementById('root')
 );
