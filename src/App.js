@@ -11,6 +11,7 @@ import { MasterContext } from './Context';
 import Public from './pages/Public';
 import Login from './pages/Login';
 import Feed from './pages/Feed';
+import NoMatch from './pages/NoMatch';
 
 const App = () => {
 	const [auth] = useContext(MasterContext);
@@ -20,21 +21,12 @@ const App = () => {
 		<Router>
 			<Switch>
 				<Route exact path='/' component={Public} />
-				<Route exact path='/login' component={Login} />
-				<Route
-					exact
-					path='/feed'
-					render={() => (auth.login ? <Feed /> : <Redirect to='/' />)}
-				/>
+				<Route path='/login' component={Login} />
+				<Route path='/feed' component={Feed} />
+				<Route component={NoMatch} />
 			</Switch>
 		</Router>
 	);
 };
 
 export default App;
-
-// console.log('local stroage login : ', localStorage.getItem('login'));
-
-// if (localStorage.getItem('login')) {
-// 	return <Redirect to='/feed' />;
-// }

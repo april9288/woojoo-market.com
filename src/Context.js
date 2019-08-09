@@ -1,17 +1,17 @@
 import React, { useState, createContext, useEffect } from 'react';
 import axios from 'axios';
 
-// import { ApiUserAuth } from './api/auth';
+import { ApiUserLogin } from './api/auth';
 
 export const MasterContext = createContext();
 
 export const ContextProvider = ({ children }) => {
 	const [auth, setAuth] = useState({});
 
-	console.log('Context : ', auth);
+	// console.log('Context : ', auth);
 
 	// useEffect(() => {
-	// 	ApiUserAuth(axios, setAuth);
+	// 	ApiUserLogin(axios, setAuth);
 	// }, []);
 
 	return (
