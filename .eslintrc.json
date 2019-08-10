@@ -3,6 +3,7 @@
         "browser": true,
         "es6": true
     },
+    "parser": "babel-eslint",
     "extends": ["airbnb", "prettier"],
     "globals": {
         "Atomics": "readonly",
@@ -17,7 +18,6 @@
     },
     "plugins": ["react", "prettier"],
     "rules": {
-        "react/jsx-indent": [true],
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-indent": [4, "tap"]
     }
 }

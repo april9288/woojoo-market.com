@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
@@ -5,8 +6,7 @@ const Data = () => {
     return <h1>Data</h1>;
 };
 
-const Feed = props => {
-    // console.log("Feed Comp's match : ", props);
+const Feed = () => {
     return (
         <section>
             <h1>Feed Page!!!</h1>
