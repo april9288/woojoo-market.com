@@ -4,7 +4,10 @@
         "es6": true
     },
     "parser": "babel-eslint",
-    "extends": ["airbnb", "prettier"],
+    "extends": [
+        "airbnb",
+        "prettier"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -16,8 +19,22 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": ["react", "prettier"],
+    "plugins": [
+        "react",
+        "prettier"
+    ],
     "rules": {
-        "react/jsx-indent": [4, "tap"]
+        "react/jsx-indent": [
+            0
+        ],
+        "react/jsx-filename-extension": "off",
+        "no-unused-vars": "off",
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "react/prop-types": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/extensions": "off"
     }
 }

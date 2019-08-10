@@ -1,10 +1,5 @@
 import React, { useContext } from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { MasterContext } from './Context';
 
@@ -15,7 +10,6 @@ import NoMatch from './pages/NoMatch';
 
 const App = () => {
     const [auth] = useContext(MasterContext);
-    console.log('App : ', auth);
 
     return (
         <Router>

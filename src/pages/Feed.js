@@ -10,8 +10,8 @@ const Feed = () => {
     return (
         <section>
             <h1>Feed Page!!!</h1>
-            <Link to="/feed/data">Some Data</Link>
-            <Route path="/feed/data" component={Data} />
+            <Link to='/feed/data'>Some Data</Link>
+            <Route path='/feed/data' component={Data} />
         </section>
     );
 };
