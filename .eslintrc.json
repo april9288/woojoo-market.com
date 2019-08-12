@@ -28,6 +28,8 @@
         "react/jsx-indent-props": "off",
         "react/jsx-closing-tag-location": "off",
         "react/self-closing-comp": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "react/jsx-boolean-value": "off",
+        "no-nested-ternary": "off"
     }
 }

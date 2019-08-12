@@ -1,46 +1,63 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavComponent = styled.section`
-	background: #845ec2;
-	display: flex;
-	justify-content: space-between;
-	padding: 1rem;
+    background: #d93c7cfc;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+    align-items: center;
 `;
 
 const Logo = styled.p`
-	margin: 0;
-	padding: 0;
-	font-size: 2rem;
-	color: white;
+    margin: 0;
+    font-size: 2rem;
+    a {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
 `;
 
-const LoginButton = styled.button`
-	background: transparent;
-	border: 2px solid white;
-	font-size: 1.5rem;
-	cursor: pointer;
+const LoginButton = styled.section`
+    background: transparent;
+    display: flex;
+    font-size: 1.2rem;
 
-	&:hover {
-		background: #d65db1;
-	}
-
-	a {
-		color: white;
-		text-decoration: none;
-	}
+    a {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
 `;
 
-const Nav = () => {
-	return (
-		<NavComponent>
-			<Logo>WooJoo Market</Logo>
-			<LoginButton>
-				<Link to='/login'>Log in</Link>
-			</LoginButton>
-		</NavComponent>
-	);
+const Divider = styled.section`
+    border-left: 3px solid white;
+    margin: 0 1rem;
+`;
+
+const Nav = ({ pathname }) => {
+    return (
+        <NavComponent>
+            <Logo>
+                <Link to="/">WooJoo Market</Link>
+            </Logo>
+            <LoginButton>
+                {pathname === '/login' ? (
+                    <Link to="/signup">Sign Up</Link>
+                ) : pathname === '/signup' ? (
+                    <Link to="/login">Log In</Link>
+                ) : (
+                    <Fragment>
+                        <Link to="/login">Log In</Link>
+                        <Divider />
+                        <Link to="/signup">Sign Up</Link>
+                    </Fragment>
+                )}
+            </LoginButton>
+        </NavComponent>
+    );
 };
 
 export default Nav;

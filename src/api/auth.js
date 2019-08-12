@@ -4,7 +4,7 @@ const SERVER =
         : process.env.API_SERVER_PROD;
 
 export const ApiUserLogin = async (axios, setAuth, userEmail, userPassword) => {
-    const response = await axios.post(`${SERVER}/login`, {
+    const response = await axios.post(`${SERVER}/api/login`, {
         userEmail,
         userPassword
     });
@@ -15,13 +15,28 @@ export const ApiUserLogin = async (axios, setAuth, userEmail, userPassword) => {
 export const ApiUserSignup = async (
     axios,
     setAuth,
-    signupUserEmail,
-    signupUserPassword
+    email,
+    password,
+    setSignupStatus
 ) => {
-    const response = await axios.post(`${SERVER}/signup`, {
-        signupUserEmail,
-        signupUserPassword
-    });
-    localStorage.setItem('login', response.data.login);
-    setAuth(response.data);
+    try {
+        const response = await axios.post(`${SERVER}/api/signup`, {
+            email,
+            password
+        });
+
+        const { token, login, userEmail } = response.data;
+
+        // storing JWT token into browser local stroage
+        // ***weak security***  will store in httponly session later
+        localStorage.setItem('WJM_TOKEN', token);
+
+        // saving user basic info into 'auth' global context
+        setAuth({
+            login,
+            userEmail
+        });
+    } catch (e) {
+        setSignupStatus('DUPLICATE_EMAIL');
+    }
 };
