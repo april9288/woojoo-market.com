@@ -40,3 +40,21 @@ export const ApiUserSignup = async (
         setSignupStatus('DUPLICATE_EMAIL');
     }
 };
+
+export const ApiForgotPassword = async (axios, email, setServerResponse) => {
+    try {
+        const response = await axios.post(
+            `${SERVER}/api/login/forgotPassword`,
+            { email }
+        );
+
+        const { status } = response.data;
+
+        // if status is true, then it means the server has already sent an email with a temporary password
+        setServerResponse(status);
+    } catch (e) {
+        // handing an error from server-side
+        // for now, i'll just sent 'true'
+        setServerResponse(true);
+    }
+};

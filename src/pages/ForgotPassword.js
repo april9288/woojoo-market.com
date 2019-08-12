@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Nav from '../components/Public/Nav';
@@ -13,15 +12,9 @@ const LoginSection = styled.section`
     align-items: center;
 `;
 
-const Login = ({ location }) => {
-    // pathname would be '/login'
+const ForgotPassword = ({ location }) => {
+    // pathname would be '/forgotPassword'
     const { pathname } = location;
-
-    // check if there is a JWT token in the local storage
-    // if true, then let the user bypass the login validation
-    // if (localStorage.getItem('WJM_TOKEN')) {
-    //     return <Redirect to="/feed" />;
-    // }
 
     return (
         <Fragment>
@@ -33,4 +26,4 @@ const Login = ({ location }) => {
     );
 };
 
-export default Login;
+export default ForgotPassword;

@@ -93,7 +93,7 @@ const Home = () => {
                 <GrayLayer>
                     <Text>
                         New Social Marketplace for Geek Stuff
-                        <Link to="/login">
+                        <Link to="/signup">
                             <LoginButton>Sign Up Now</LoginButton>
                         </Link>
                     </Text>

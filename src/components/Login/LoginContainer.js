@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
+import ForgotPasswordForm from './ForgotPasswordForm';
 
 const FormSection = styled.section`
     display: flex;
@@ -36,7 +37,7 @@ const LoginButton = styled.button`
 
 const LoginText = styled.h1`
     text-align: center;
-    font-size: 3rem;
+    font-size: ${props => (props.small ? '1.5rem' : '3rem')};
     color: rgba(0, 0, 0, 0.8);
 `;
 
@@ -103,13 +104,20 @@ const LoginContainer = ({ pathname }) => (
                 ForgotPassword={ForgotPassword}
                 LoginLink={LoginLink}
             />
-        ) : (
+        ) : pathname === '/signup' ? (
             <SignupForm
                 LoginFormTag={LoginFormTag}
                 LoginButton={LoginButton}
                 LoginText={LoginText}
                 LoginLink={LoginLink}
                 Warning={Warning}
+                Informing={Informing}
+            />
+        ) : (
+            <ForgotPasswordForm
+                LoginFormTag={LoginFormTag}
+                LoginButton={LoginButton}
+                LoginText={LoginText}
                 Informing={Informing}
             />
         )}
