@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 // import { Route, Link } from 'react-router-dom';
 
-import { ApiUploadImage } from '../api/uploadImage';
+import { ApiUploadImage } from '../../api/uploadImage';
 
 const Feed = () => {
     const [image, setImage] = useState('');

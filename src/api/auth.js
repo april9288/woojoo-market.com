@@ -29,7 +29,12 @@ export const ApiUserSignup = async (
 
         // storing JWT token into browser local stroage
         // ***weak security***  will store in httponly session later
-        localStorage.setItem('WJM_TOKEN', token);
+        // localStorage.setItem('WJM_TOKEN', token);
+
+        if (login) {
+            const test = await axios.get(`${SERVER}/test`);
+            console.log('successssssssssssssssss', test.data);
+        }
 
         // saving user basic info into 'auth' global context
         setAuth({

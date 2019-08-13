@@ -2,17 +2,17 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { MasterContext } from '../../Context';
+import { AppContext } from '../../context/appContext';
 import { ApiUserLogin } from '../../api/auth';
 
 const LoginForm = ({
-    LoginFormTag,
-    LoginButton,
-    LoginText,
-    ForgotPassword,
-    LoginLink
+    StyledForm,
+    StyledButton,
+    StyledText,
+    StyledForgotPasswordButton,
+    StyledLink
 }) => {
-    const [auth, setAuth] = useContext(MasterContext);
+    const [auth, setAuth] = useContext(AppContext);
 
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
@@ -24,8 +24,8 @@ const LoginForm = ({
     };
 
     return (
-        <LoginFormTag onSubmit={handleLogin}>
-            <LoginText>Log In</LoginText>
+        <StyledForm onSubmit={handleLogin}>
+            <StyledText>Log In</StyledText>
             <input
                 type="email"
                 onChange={e => setUserEmail(e.target.value.trim())}
@@ -39,15 +39,15 @@ const LoginForm = ({
                 placeholder="Password"
                 required
             />
-            <LoginButton type="submit">Log in</LoginButton>
-            <ForgotPassword>
+            <StyledButton type="submit">Log in</StyledButton>
+            <StyledForgotPasswordButton>
                 <Link to="/forgotPassword">Forgot Password?</Link>
-            </ForgotPassword>
-            <LoginLink>
+            </StyledForgotPasswordButton>
+            <StyledLink>
                 <p>Don&apos;t have an account? </p>
                 <Link to="/signup">Sign up</Link>
-            </LoginLink>
-        </LoginFormTag>
+            </StyledLink>
+        </StyledForm>
     );
 };
 

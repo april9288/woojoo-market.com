@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ContextProvider } from './Context';
-import App from './App.js';
+import { ContextProvider } from './context/appContext';
+import App from './App';
 import './index.css';
 
 ReactDOM.render(

@@ -3,7 +3,12 @@ import axios from 'axios';
 
 import { ApiForgotPassword } from '../../api/auth';
 
-const LoginForm = ({ LoginFormTag, LoginButton, LoginText, Informing }) => {
+const LoginForm = ({
+    StyledForm,
+    StyledButton,
+    StyledText,
+    StyledInforming
+}) => {
     const [userEmail, setUserEmail] = useState('');
     const [serverResponse, setServerResponse] = useState(false);
     const [emailSent, setemailSent] = useState(false);
@@ -20,17 +25,17 @@ const LoginForm = ({ LoginFormTag, LoginButton, LoginText, Informing }) => {
     }
 
     return (
-        <LoginFormTag onSubmit={handleLogin}>
+        <StyledForm onSubmit={handleLogin}>
             {emailSent ? (
-                <LoginText small={true}>
+                <StyledText small={true}>
                     We&apos;ve sent a temporary password. Please check your
                     email and reset your password.
-                </LoginText>
+                </StyledText>
             ) : (
                 <Fragment>
-                    <LoginText small={true}>
+                    <StyledText small={true}>
                         Please enter your email address
-                    </LoginText>
+                    </StyledText>
                     <input
                         type="email"
                         value={userEmail}
@@ -38,17 +43,17 @@ const LoginForm = ({ LoginFormTag, LoginButton, LoginText, Informing }) => {
                         placeholder="Your email address"
                         required
                     />
-                    <LoginButton type="submit">Submit</LoginButton>
-                    <Informing>
+                    <StyledButton type="submit">Submit</StyledButton>
+                    <StyledInforming>
                         <p>
                             If the email address exists, we will immediately
                             send you a temporary password. Please check your
                             email and reset your password.
                         </p>
-                    </Informing>
+                    </StyledInforming>
                 </Fragment>
             )}
-        </LoginFormTag>
+        </StyledForm>
     );
 };
 

@@ -2,18 +2,18 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { MasterContext } from '../../Context';
+import { AppContext } from '../../context/appContext';
 import { ApiUserSignup } from '../../api/auth';
 
 const SignupForm = ({
-    LoginFormTag,
-    LoginButton,
-    LoginText,
-    LoginLink,
-    Warning,
-    Informing
+    StyledForm,
+    StyledButton,
+    StyledText,
+    StyledLink,
+    StyledWarning,
+    StyledInforming
 }) => {
-    const [auth, setAuth] = useContext(MasterContext);
+    const [auth, setAuth] = useContext(AppContext);
 
     const [signupStatus, setSignupStatus] = useState('');
     const [signupUserEmail, setSignupUserEmail] = useState('');
@@ -50,8 +50,8 @@ const SignupForm = ({
     };
 
     return (
-        <LoginFormTag onSubmit={handleSignup}>
-            <LoginText>Sign Up</LoginText>
+        <StyledForm onSubmit={handleSignup}>
+            <StyledText>Sign Up</StyledText>
             <input
                 type="email"
                 value={signupUserEmail}
@@ -59,7 +59,9 @@ const SignupForm = ({
                 placeholder="Email"
                 required
             />
-            {duplicateEmail && <Warning>Email Already Exists</Warning>}
+            {duplicateEmail && (
+                <StyledWarning>Email Already Exists</StyledWarning>
+            )}
             <input
                 type="password"
                 value={signupUserPassword}
@@ -68,7 +70,7 @@ const SignupForm = ({
                 required
             />
             {signupUserPassword.length > 0 && signupUserPassword.length < 3 && (
-                <Warning>Password Strength: Weak</Warning>
+                <StyledWarning>Password Strength: Weak</StyledWarning>
             )}
             <input
                 type="password"
@@ -79,22 +81,22 @@ const SignupForm = ({
             />
             {signupUserPassword !== signupUserPassword2 &&
                 signupUserPassword2.length > 0 && (
-                    <Warning>Password Do Not Match</Warning>
+                    <StyledWarning>Password Do Not Match</StyledWarning>
                 )}
 
-            <Informing>
+            <StyledInforming>
                 <p>
                     We don’t spam. By creating an account, you agree to
                     WJM&apos;s Terms and Privacy Policy.
                 </p>
-            </Informing>
+            </StyledInforming>
 
-            <LoginButton type="submit">Sign up</LoginButton>
-            <LoginLink>
+            <StyledButton type="submit">Sign up</StyledButton>
+            <StyledLink>
                 <p>Already have an account? </p>
                 <Link to="/login">Log in</Link>
-            </LoginLink>
-        </LoginFormTag>
+            </StyledLink>
+        </StyledForm>
     );
 };
 
