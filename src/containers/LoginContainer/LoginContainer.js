@@ -25,6 +25,7 @@ const LoginContainer = ({ pathname }) => {
                     StyledText={StyledText}
                     StyledForgotPasswordButton={StyledForgotPasswordButton}
                     StyledLink={StyledLink}
+                    StyledWarning={StyledWarning}
                 />
             );
             break;

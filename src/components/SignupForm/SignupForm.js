@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { AppContext } from '../../context/appContext';
 import { ApiUserSignup } from '../../api/auth';
@@ -13,7 +13,11 @@ const SignupForm = ({
     StyledWarning,
     StyledInforming
 }) => {
+    // after submitting sign up form, will check if the user can login or not.
     const [auth, setAuth] = useContext(AppContext);
+    if (auth.login) {
+        return <Redirect to="/feed" />;
+    }
 
     const [signupStatus, setSignupStatus] = useState('');
     const [signupUserEmail, setSignupUserEmail] = useState('');
@@ -21,7 +25,7 @@ const SignupForm = ({
     const [signupUserPassword2, setSignupUserPassword2] = useState('');
     const [duplicateEmail, setDuplicateEmail] = useState(false);
 
-    // after making a request to server, if there's a duplicated email, then it'll reset all the inputs
+    // after making a request to server, if there's the duplicated email, then it'll reset all the inputs
     if (signupStatus === 'DUPLICATE_EMAIL') {
         setDuplicateEmail(true);
         setSignupUserEmail('');

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { AppContext } from '../../context/appContext';
 import { ApiUserLogin } from '../../api/auth';
@@ -10,17 +10,31 @@ const LoginForm = ({
     StyledButton,
     StyledText,
     StyledForgotPasswordButton,
-    StyledLink
+    StyledLink,
+    StyledWarning
 }) => {
+    // after submitting log in form, will check if the user can login or not.
     const [auth, setAuth] = useContext(AppContext);
+    if (auth.login) {
+        return <Redirect to="/feed" />;
+    }
 
+    const [loginStatus, setLoginStatus] = useState(true);
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
+    const [loginFailed, setLoginFailed] = useState(false);
+
+    // after making a request to server, if there's the duplicated email, then it'll reset all the inputs
+    if (!loginStatus) {
+        setLoginFailed(true);
+        setUserEmail('');
+        setUserPassword('');
+        setLoginStatus(true);
+    }
 
     const handleLogin = e => {
         e.preventDefault();
-        ApiUserLogin(axios, setAuth, userEmail, userPassword);
-        setUserPassword('');
+        ApiUserLogin(axios, setAuth, userEmail, userPassword, setLoginStatus);
     };
 
     return (
@@ -28,10 +42,12 @@ const LoginForm = ({
             <StyledText>Log In</StyledText>
             <input
                 type="email"
+                value={userEmail}
                 onChange={e => setUserEmail(e.target.value.trim())}
                 placeholder="Email"
                 required
             />
+            {loginFailed && <StyledWarning>Login Failed</StyledWarning>}
             <input
                 type="password"
                 value={userPassword}
@@ -39,6 +55,7 @@ const LoginForm = ({
                 placeholder="Password"
                 required
             />
+            {loginFailed && <StyledWarning>Login Failed</StyledWarning>}
             <StyledButton type="submit">Log in</StyledButton>
             <StyledForgotPasswordButton>
                 <Link to="/forgotPassword">Forgot Password?</Link>

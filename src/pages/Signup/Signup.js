@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
-import { StyledSignupSection } from './styles';
 import Nav from '../../components/PublicNav';
 import LoginContainer from '../../containers/LoginContainer';
+import { StyledSignupSection } from './styles';
 
 const Signup = ({ location }) => {
     // pathname would be '/signup'

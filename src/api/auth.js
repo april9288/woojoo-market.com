@@ -3,13 +3,29 @@ const SERVER =
         ? process.env.API_SERVER_DEV
         : process.env.API_SERVER_PROD;
 
-export const ApiUserLogin = async (axios, setAuth, userEmail, userPassword) => {
-    const response = await axios.post(`${SERVER}/api/login`, {
-        userEmail,
-        userPassword
-    });
-    localStorage.setItem('login', response.data.login);
-    setAuth(response.data);
+export const ApiUserLogin = async (
+    axios,
+    setAuth,
+    email,
+    password,
+    setLoginStatus
+) => {
+    try {
+        const response = await axios.post(`${SERVER}/api/login`, {
+            email,
+            password
+        });
+
+        const { login, userEmail } = response.data;
+
+        // saving user basic info into 'auth' global context
+        setAuth({
+            login,
+            userEmail
+        });
+    } catch (e) {
+        setLoginStatus(false);
+    }
 };
 
 export const ApiUserSignup = async (
@@ -25,16 +41,7 @@ export const ApiUserSignup = async (
             password
         });
 
-        const { token, login, userEmail } = response.data;
-
-        // storing JWT token into browser local stroage
-        // ***weak security***  will store in httponly session later
-        // localStorage.setItem('WJM_TOKEN', token);
-
-        if (login) {
-            const test = await axios.get(`${SERVER}/test`);
-            console.log('successssssssssssssssss', test.data);
-        }
+        const { login, userEmail } = response.data;
 
         // saving user basic info into 'auth' global context
         setAuth({
@@ -59,7 +66,7 @@ export const ApiForgotPassword = async (axios, email, setServerResponse) => {
         setServerResponse(status);
     } catch (e) {
         // handing an error from server-side
-        // for now, i'll just sent 'true'
+        // for now, I'll just sent 'true'
         setServerResponse(true);
     }
 };
