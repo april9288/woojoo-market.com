@@ -26,17 +26,22 @@ export const StyledDropDownMenu = styled.section`
     background: rgba(0, 0, 0, 0.2);
     width: 10rem;
 
-    a {
+    a,
+    button {
         text-decoration: none;
         border: transparent;
         font-size: 1rem;
         padding: 0.5rem;
         background: transparent;
         cursor: pointer;
-        color: rgba(0,0,0,0.8)
+        color: rgba(0, 0, 0, 0.8);
 
         &:hover {
             background: rgba(0, 0, 0, 0.3);
         }
+    }
+
+    button {
+        border-top: 2px solid gray;
     }
 `;

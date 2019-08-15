@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import DropDownMenu from '../DropDownMenu';
@@ -8,8 +8,10 @@ const FeedNav = () => {
     const [show, setShow] = useState(false);
 
     const closeMenu = () => {
-        setShow(false);
-        document.removeEventListener('click', closeMenu);
+        if (show) {
+            setShow(false);
+            document.removeEventListener('click', closeMenu);
+        }
     };
 
     const showMenu = e => {
@@ -17,6 +19,12 @@ const FeedNav = () => {
         setShow(true);
         document.addEventListener('click', closeMenu);
     };
+
+    useEffect(() => {
+        return () => {
+            document.removeEventListener('click', closeMenu);
+        };
+    }, []);
 
     return (
         <StyledSection>

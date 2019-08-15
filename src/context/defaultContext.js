@@ -1,3 +1,5 @@
 export default {
-    login: false
+    login: false,
+    email: null,
+    error: null
 };

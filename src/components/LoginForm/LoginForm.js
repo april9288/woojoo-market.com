@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 
 import { AppContext } from '../../context/appContext';
-import { ApiUserLogin } from '../../api/auth';
+import { ApiAuthentication } from '../../api/auth';
 
 const LoginForm = ({
     StyledForm,
@@ -15,26 +15,31 @@ const LoginForm = ({
 }) => {
     // after submitting log in form, will check if the user can login or not.
     const [auth, setAuth] = useContext(AppContext);
-    if (auth.login) {
+    const { login, error } = auth;
+
+    if (login) {
         return <Redirect to="/feed" />;
     }
 
-    const [loginStatus, setLoginStatus] = useState(true);
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
-    const [loginFailed, setLoginFailed] = useState(false);
+    const defaultUser = {
+        email: '',
+        password: ''
+    };
 
-    // after making a request to server, if there's the duplicated email, then it'll reset all the inputs
-    if (!loginStatus) {
-        setLoginFailed(true);
-        setUserEmail('');
-        setUserPassword('');
-        setLoginStatus(true);
-    }
+    const [user, setUser] = useState(defaultUser);
+    const { email, password } = user;
 
     const handleLogin = e => {
         e.preventDefault();
-        ApiUserLogin(axios, setAuth, userEmail, userPassword, setLoginStatus);
+        ApiAuthentication(
+            axios,
+            'post',
+            '/api/login',
+            { email, password },
+            auth,
+            setAuth,
+            'LOGIN_ERROR'
+        );
     };
 
     return (
@@ -42,20 +47,24 @@ const LoginForm = ({
             <StyledText>Log In</StyledText>
             <input
                 type="email"
-                value={userEmail}
-                onChange={e => setUserEmail(e.target.value.trim())}
+                value={email}
+                onChange={e =>
+                    setUser({ ...user, email: e.target.value.trim() })
+                }
                 placeholder="Email"
                 required
             />
-            {loginFailed && <StyledWarning>Login Failed</StyledWarning>}
+            {error && <StyledWarning>Login Failed</StyledWarning>}
             <input
                 type="password"
-                value={userPassword}
-                onChange={e => setUserPassword(e.target.value.trim())}
+                value={password}
+                onChange={e =>
+                    setUser({ ...user, password: e.target.value.trim() })
+                }
                 placeholder="Password"
                 required
             />
-            {loginFailed && <StyledWarning>Login Failed</StyledWarning>}
+            {error && <StyledWarning>Login Failed</StyledWarning>}
             <StyledButton type="submit">Log in</StyledButton>
             <StyledForgotPasswordButton>
                 <Link to="/forgotPassword">Forgot Password?</Link>

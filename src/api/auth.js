@@ -1,66 +1,52 @@
+import defaultContext from '../context/defaultContext';
+
 const SERVER =
     process.env.NODE_ENV === 'development'
         ? process.env.API_SERVER_DEV
         : process.env.API_SERVER_PROD;
 
-export const ApiUserLogin = async (
+// This is resuable for Login, Signup, Logout and basic auth checking
+export const ApiAuthentication = async (
     axios,
+    method,
+    url,
+    data,
+    auth,
     setAuth,
-    email,
-    password,
-    setLoginStatus
+    ERROR_MESSAGE
 ) => {
     try {
-        const response = await axios.post(`${SERVER}/api/login`, {
-            email,
-            password
+        const res = await axios({
+            method,
+            url: `${process.env.API_SERVER_DEV}${url}`,
+            data,
+            withCredentials: true,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true
+            }
         });
-
-        const { login, userEmail } = response.data;
-
-        // saving user basic info into 'auth' global context
+        const { login, userEmail } = res.data;
         setAuth({
             login,
-            userEmail
+            email: userEmail,
+            error: null
         });
     } catch (e) {
-        setLoginStatus(false);
-    }
-};
-
-export const ApiUserSignup = async (
-    axios,
-    setAuth,
-    email,
-    password,
-    setSignupStatus
-) => {
-    try {
-        const response = await axios.post(`${SERVER}/api/signup`, {
-            email,
-            password
-        });
-
-        const { login, userEmail } = response.data;
-
-        // saving user basic info into 'auth' global context
         setAuth({
-            login,
-            userEmail
+            ...defaultContext,
+            error: ERROR_MESSAGE
         });
-    } catch (e) {
-        setSignupStatus('DUPLICATE_EMAIL');
     }
 };
 
 export const ApiForgotPassword = async (axios, email, setServerResponse) => {
     try {
-        const response = await axios.post(
-            `${SERVER}/api/login/forgotPassword`,
-            { email }
-        );
+        const res = await axios.post(`${SERVER}/api/login/forgotPassword`, {
+            email
+        });
 
-        const { status } = response.data;
+        const { status } = res.data;
 
         // if status is true, then it means the server has already sent an email with a temporary password
         setServerResponse(status);

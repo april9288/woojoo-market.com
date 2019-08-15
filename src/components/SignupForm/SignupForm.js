@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 
 import { AppContext } from '../../context/appContext';
-import { ApiUserSignup } from '../../api/auth';
+import { ApiAuthentication } from '../../api/auth';
 
 const SignupForm = ({
     StyledForm,
@@ -15,40 +15,32 @@ const SignupForm = ({
 }) => {
     // after submitting sign up form, will check if the user can login or not.
     const [auth, setAuth] = useContext(AppContext);
-    if (auth.login) {
+    const { login, error } = auth;
+
+    if (login) {
         return <Redirect to="/feed" />;
     }
 
-    const [signupStatus, setSignupStatus] = useState('');
-    const [signupUserEmail, setSignupUserEmail] = useState('');
-    const [signupUserPassword, setSignupUserPassword] = useState('');
-    const [signupUserPassword2, setSignupUserPassword2] = useState('');
-    const [duplicateEmail, setDuplicateEmail] = useState(false);
+    const defaultUser = {
+        email: '',
+        password: '',
+        password2: ''
+    };
 
-    // after making a request to server, if there's the duplicated email, then it'll reset all the inputs
-    if (signupStatus === 'DUPLICATE_EMAIL') {
-        setDuplicateEmail(true);
-        setSignupUserEmail('');
-        setSignupUserPassword('');
-        setSignupUserPassword2('');
-        setSignupStatus('');
-    }
+    const [user, setUser] = useState(defaultUser);
+    const { email, password, password2 } = user;
 
-    // handling form submission
     const handleSignup = e => {
         e.preventDefault();
-
-        // make a request to server
-        if (
-            signupUserPassword === signupUserPassword2 &&
-            signupUserPassword.length > 0
-        ) {
-            ApiUserSignup(
+        if (password === password2 && password.length > 0) {
+            ApiAuthentication(
                 axios,
+                'POST',
+                '/api/signup',
+                { email, password },
+                auth,
                 setAuth,
-                signupUserEmail,
-                signupUserPassword,
-                setSignupStatus
+                'DUPLICATE_VALUE'
             );
         }
     };
@@ -58,35 +50,38 @@ const SignupForm = ({
             <StyledText>Sign Up</StyledText>
             <input
                 type="email"
-                value={signupUserEmail}
-                onChange={e => setSignupUserEmail(e.target.value.trim())}
+                value={email}
+                onChange={e =>
+                    setUser({ ...user, email: e.target.value.trim() })
+                }
                 placeholder="Email"
                 required
             />
-            {duplicateEmail && (
-                <StyledWarning>Email Already Exists</StyledWarning>
-            )}
+            {error && <StyledWarning>Email Already Exists</StyledWarning>}
             <input
                 type="password"
-                value={signupUserPassword}
-                onChange={e => setSignupUserPassword(e.target.value.trim())}
+                value={password}
+                onChange={e =>
+                    setUser({ ...user, password: e.target.value.trim() })
+                }
                 placeholder="Password"
                 required
             />
-            {signupUserPassword.length > 0 && signupUserPassword.length < 3 && (
+            {password.length > 0 && password.length < 3 && (
                 <StyledWarning>Password Strength: Weak</StyledWarning>
             )}
             <input
                 type="password"
-                value={signupUserPassword2}
-                onChange={e => setSignupUserPassword2(e.target.value.trim())}
+                value={password2}
+                onChange={e =>
+                    setUser({ ...user, password2: e.target.value.trim() })
+                }
                 placeholder="Password Confirm"
                 required
             />
-            {signupUserPassword !== signupUserPassword2 &&
-                signupUserPassword2.length > 0 && (
-                    <StyledWarning>Password Do Not Match</StyledWarning>
-                )}
+            {password !== password2 && password2.length > 0 && (
+                <StyledWarning>Password Do Not Match</StyledWarning>
+            )}
 
             <StyledInforming>
                 <p>
