@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 
 export const StyledSection = styled.section`
-    background: #f6f6f6fc;
+    background: white;
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 2rem;
     align-items: center;
+    position: sticky;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.1);
 `;
 
 export const StyledLogo = styled.p`
     margin: 0;
     font-size: 2rem;
     a {
-        color: #eb4545;
+        color: #9b2727;
         text-decoration: none;
         cursor: pointer;
     }

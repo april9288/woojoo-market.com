@@ -4,11 +4,11 @@ export const StyledDropDownButton = styled.button`
     background: transparent;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.8);
-    font-size: 1.2rem;
-    border: 2px solid #eb4545;
+    font-size: 14px;
+    border: transparent;
 
     &:hover {
-        background: rgba(0, 0, 0, 0.1);
+        color: rgba(0, 0, 0, 0.4);
     }
 
     a {
@@ -23,14 +23,14 @@ export const StyledDropDownMenu = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.2);
-    width: 10rem;
+    background: white;
+    width: 12rem;
 
     a,
     button {
         text-decoration: none;
         border: transparent;
-        font-size: 1rem;
+        font-size: 14px;
         padding: 0.5rem;
         background: transparent;
         cursor: pointer;
@@ -42,6 +42,6 @@ export const StyledDropDownMenu = styled.section`
     }
 
     button {
-        border-top: 2px solid gray;
+        border-top: 1px solid gray;
     }
 `;

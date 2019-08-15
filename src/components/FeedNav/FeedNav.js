@@ -8,20 +8,21 @@ const FeedNav = () => {
     const [show, setShow] = useState(false);
 
     const closeMenu = () => {
-        if (show) {
-            setShow(false);
+        if (!show) {
             document.removeEventListener('click', closeMenu);
+            setShow(false);
         }
     };
-
-    const showMenu = e => {
-        e.preventDefault();
-        setShow(true);
-        document.addEventListener('click', closeMenu);
+    const showMenu = () => {
+        if (!show) {
+            document.addEventListener('click', closeMenu);
+            setShow(true);
+        }
     };
 
     useEffect(() => {
         return () => {
+            setShow(false);
             document.removeEventListener('click', closeMenu);
         };
     }, []);
