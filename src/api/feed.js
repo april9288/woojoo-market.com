@@ -11,12 +11,15 @@ export const ApiFeed = async (
     params,
     feed,
     setFeed,
-    ERROR_MESSAGE
+    ERROR_MESSAGE,
+    setScroll
 ) => {
     try {
+        console.log('api calling >>>>>>>', params);
+
         const res = await axios({
             method,
-            url: `${process.env.API_SERVER_DEV}${url}`,
+            url: `${SERVER}${url}`,
             data,
             params,
             withCredentials: true,
@@ -26,7 +29,14 @@ export const ApiFeed = async (
             }
         });
         const { feedData } = res.data;
-        setFeed(feedData);
+
+        if (setScroll) {
+            const { offset } = params;
+            setFeed(feed.concat(feedData));
+            setScroll({ loading: false, offset: offset + 4 });
+        } else {
+            setFeed(feedData);
+        }
     } catch (e) {
         setFeed([]);
     }

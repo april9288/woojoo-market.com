@@ -1,30 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { ApiFeed } from '../../api/feed';
 import Card from '../../components/Card';
-import { StyledSection } from './styles';
+import { StyledSection, StyledLoadMore } from './styles';
+
+const defaultScroll = {
+    offset: 0,
+    loading: false
+};
 
 const FeedContainer = () => {
     const [feed, setFeed] = useState([]);
-    console.log('feed container >>>>>>', feed);
+    const [scroll, setScroll] = useState(defaultScroll);
+    const { offset, loading } = scroll;
 
-    useEffect(() => {
+    const loadMore = () => {
+        setScroll({ ...scroll, loading: true });
         ApiFeed(
             axios,
             'get',
             '/api/listPost',
             null,
-            { offset: '0' },
+            { offset },
             feed,
             setFeed,
-            'SERVER_ERROR'
+            'SERVER_ERROR',
+            setScroll
         );
+    };
+
+    useEffect(() => {
+        loadMore();
     }, []);
 
     const CardComponent = feed.map(item => <Card key={item.id} {...item} />);
 
-    return <StyledSection>{CardComponent}</StyledSection>;
+    return (
+        <StyledSection>
+            {CardComponent}
+            {feed.length > 0 && (
+                <StyledLoadMore type="button" onClick={loadMore}>
+                    {loading ? (
+                        <section>Loading Now...</section>
+                    ) : (
+                        <section>More</section>
+                    )}
+                </StyledLoadMore>
+            )}
+        </StyledSection>
+    );
 };
 
 export default FeedContainer;

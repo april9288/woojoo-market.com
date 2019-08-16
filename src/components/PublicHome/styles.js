@@ -3,32 +3,42 @@ import styled from 'styled-components';
 export const StyledSection = styled.section``;
 
 export const StyledFirstSection = styled.section`
-    background-image: url('https://woojoo.s3-us-west-1.amazonaws.com/bg3.webp');
+    background-image: url('https://woojoo.s3-us-west-1.amazonaws.com/bg4.webp');
     height: 80vh;
     background-repeat: no-repeat;
     background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-left: 2rem;
+
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
 `;
 
 export const StyledGrayLayer = styled.section`
-    background: rgba(0.1, 0.1, 0.1, 0.4);
+    // background: rgba(0.1, 0.1, 0.1, 0.4);
     height: 80vh;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    display: inline-grid;
-    align-items: center;
-    text-align: center;
+    display: flex;
+    align-items: flex-start;
 `;
 
 export const StyledText = styled.div`
     margin: 0;
     padding: 0;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
     display: flex;
     flex-direction: column;
+
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-top: 8%;
 `;
 
 export const StyledButton = styled.button`

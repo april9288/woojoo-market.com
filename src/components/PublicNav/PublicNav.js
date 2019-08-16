@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
+    StyledFirstLine,
     StyledSection,
     StyledLogo,
     StyledButton,
@@ -29,12 +30,18 @@ const PublicNav = ({ pathname }) => {
     }
 
     return (
-        <StyledSection>
-            <StyledLogo>
-                <Link to="/">WooJoo Market</Link>
-            </StyledLogo>
-            <StyledButton>{buttons}</StyledButton>
-        </StyledSection>
+        <Fragment>
+            <StyledFirstLine>
+                <StyledButton>{buttons}</StyledButton>
+            </StyledFirstLine>
+            <StyledSection>
+                <img
+                    src="https://woojoo.s3-us-west-1.amazonaws.com/logo1.png"
+                    alt="mylogo"
+                    width="120px"
+                />
+            </StyledSection>
+        </Fragment>
     );
 };
 

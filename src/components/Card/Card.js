@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import { TimeCalculator } from '../../api/time';
 import { StyledCardSection, StyledTitle, StyledPrice } from './styles';
 
 const Card = ({ id, email, timestamps, photo400, title, price, history }) => {
@@ -9,7 +10,7 @@ const Card = ({ id, email, timestamps, photo400, title, price, history }) => {
             onClick={() => history.push(`${history.location.pathname}/${id}`)}
         >
             <p>{email}</p>
-            <p>{timestamps}</p>
+            <p>{TimeCalculator(timestamps)}</p>
             <img src={photo400} alt={title} />
             <StyledTitle>{title}</StyledTitle>
             <StyledPrice>

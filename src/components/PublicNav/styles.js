@@ -1,11 +1,23 @@
 import styled from 'styled-components';
 
+export const StyledFirstLine = styled.section`
+    background: black;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+
+    padding-right: 10%;
+`;
+
 export const StyledSection = styled.section`
-    background: #d93c7cfc;
+    background: #fffffffc;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 2rem;
+    padding: 0 2rem;
     align-items: center;
+
+    width: 82%;
+    margin: auto;
 `;
 
 export const StyledLogo = styled.p`
@@ -22,6 +34,7 @@ export const StyledButton = styled.section`
     background: transparent;
     display: flex;
     font-size: 1.2rem;
+    font-weight: bold;
 
     a {
         color: white;
