@@ -5,7 +5,7 @@ import { ApiProfile } from '../../api/profile';
 import {
     defaultChangePasswordState,
     defaultChangePasswordInputs
-} from '../../containers/ProfilePrivate/default';
+} from '../../containers/SettingContainer/default';
 import {
     StyledRightSection,
     StyledButton,
@@ -14,7 +14,7 @@ import {
     StyledInput,
     StyledWarning,
     StyledInforming
-} from '../../containers/ProfilePrivate/styles';
+} from '../../containers/SettingContainer/styles';
 
 const changePassword = () => {
     const [profile, setProfile] = useState(defaultChangePasswordState);

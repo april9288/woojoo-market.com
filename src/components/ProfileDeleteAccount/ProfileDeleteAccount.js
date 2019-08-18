@@ -3,11 +3,11 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 import { ApiProfile } from '../../api/profile';
-import { defaultDeleteState } from '../../containers/ProfilePrivate/default';
+import { defaultDeleteState } from '../../containers/SettingContainer/default';
 import {
     StyledRightSection,
     StyledButton
-} from '../../containers/ProfilePrivate/styles';
+} from '../../containers/SettingContainer/styles';
 
 const DeleteAccount = ({ history }) => {
     const [profile, setProfile] = useState(defaultDeleteState);

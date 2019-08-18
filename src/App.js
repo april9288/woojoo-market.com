@@ -16,6 +16,7 @@ import Feed from './pages/Feed';
 import NoMatch from './pages/NoMatch';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 const App = () => {
     const [auth] = useContext(AppContext);
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path="/feed" component={Feed} />
                 <Route path="/post" component={Post} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/settings" component={Settings} />
                 <Route component={NoMatch} />
             </Switch>
         </Router>

@@ -34,6 +34,7 @@ const FeedDetail = ({ history }) => {
     const { image, success, error } = post;
 
     // when the feed is successfully posted, then it'll redirect the user to the detail page
+    // eslint-disable-next-line consistent-return
     useEffect(() => {
         if (success) {
             return history.push(`/feed/${success}`);

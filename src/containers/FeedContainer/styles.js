@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledSection = styled.section`
     display: flex;
     align-items: center;
-    background: floralwhite;
+    background: rgba(0, 0, 0, 0.05);
     flex-direction: column;
 `;
 

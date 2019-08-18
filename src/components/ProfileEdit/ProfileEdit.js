@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { ApiProfile } from '../../api/profile';
-import { defaultInputs } from '../../containers/ProfilePrivate/default';
+import { defaultInputs } from '../../containers/SettingContainer/default';
 
 import {
     StyledRightSection,
@@ -15,27 +15,34 @@ import {
     StyledCell,
     StyledKey,
     StyledInput,
-    StyledButton
-} from '../../containers/ProfilePrivate/styles';
+    StyledButton,
+    StyledInforming
+} from '../../containers/SettingContainer/styles';
 
 const ProfileEdit = () => {
-    const [profile, setProfile] = useState({});
+    const [profile, setProfile] = useState('');
     const [preview, setPreview] = useState(null);
-    const { photo400, error } = profile;
-
-    console.log('profile!! >>> ', profile);
+    const { photo400, error, status } = profile;
 
     useEffect(() => {
-        ApiProfile(
-            axios,
-            'get',
-            '/api/profile/private',
-            null,
-            profile,
-            setProfile,
-            null
-        );
+        // involking the function only once
+        if (profile.length === 0) {
+            ApiProfile(
+                axios,
+                'get',
+                '/api/profile/private',
+                null,
+                profile,
+                setProfile,
+                null
+            );
+        }
     }, []);
+
+    useEffect(() => {
+        // updating the profile photo only when the data is retrived from the server
+        setPreview(photo400);
+    }, [status]);
 
     const handleFile = e => {
         setProfile({
@@ -79,14 +86,33 @@ const ProfileEdit = () => {
             data.forEach(key => formData.append(key, profile[key]));
 
             // makeing an Ajax request via axios
-            // ApiCreatePost(axios, formData, post, setPost);
+            ApiProfile(
+                axios,
+                'post',
+                '/api/editProfile',
+                formData,
+                profile,
+                setProfile,
+                null
+            );
+        }
+    };
+
+    // eslint-disable-next-line consistent-return
+    const handleSuccessMessage = result => {
+        if (result === 'updated') {
+            return (
+                <StyledInforming>
+                    You&apos;ve successfully updated your profile
+                </StyledInforming>
+            );
         }
     };
 
     return (
         <StyledRightSection>
             <p>Edit Profile</p>
-
+            {handleSuccessMessage(status)}
             <StyledSubSection>
                 <StyledPhotoKey>
                     Profile Photo
