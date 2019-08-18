@@ -14,6 +14,8 @@ import ForgotPassword from './pages/ForgotPassword';
 import Signup from './pages/Signup';
 import Feed from './pages/Feed';
 import NoMatch from './pages/NoMatch';
+import Post from './pages/Post';
+import Profile from './pages/Profile';
 
 const App = () => {
     const [auth] = useContext(AppContext);
@@ -31,6 +33,8 @@ const App = () => {
                 <Route path="/forgotPassword" component={ForgotPassword} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/feed" component={Feed} />
+                <Route path="/post" component={Post} />
+                <Route path="/profile" component={Profile} />
                 <Route component={NoMatch} />
             </Switch>
         </Router>

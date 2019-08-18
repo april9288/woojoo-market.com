@@ -17,7 +17,7 @@ const SignupForm = ({
     const [auth, setAuth] = useContext(AppContext);
     const { login, error } = auth;
 
-    if (login) {
+    if (login === true) {
         return <Redirect to="/feed" />;
     }
 
@@ -57,7 +57,9 @@ const SignupForm = ({
                 placeholder="Email"
                 required
             />
-            {error && <StyledWarning>Email Already Exists</StyledWarning>}
+            {error === 'DUPLICATE_VALUE' && (
+                <StyledWarning>Email Already Exists</StyledWarning>
+            )}
             <input
                 type="password"
                 value={password}

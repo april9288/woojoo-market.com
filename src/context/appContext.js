@@ -21,7 +21,7 @@ export const ContextProvider = ({ children }) => {
             null,
             auth,
             setAuth,
-            false
+            'AUTH_ERROR'
         );
 
         return () => {

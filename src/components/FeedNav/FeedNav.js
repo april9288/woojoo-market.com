@@ -1,8 +1,13 @@
-import React, { Fragement, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import DropDownMenu from '../DropDownMenu';
-import { StyledSection, StyledLogo, StyledSearch } from './styles';
+import {
+    StyledSection,
+    StyledSubSection,
+    StyledLogo,
+    StyledSearch
+} from './styles';
 
 const FeedNav = () => {
     const [show, setShow] = useState(false);
@@ -29,11 +34,19 @@ const FeedNav = () => {
 
     return (
         <StyledSection>
-            <StyledLogo>
-                <Link to="/feed">WJM</Link>
-            </StyledLogo>
-            <StyledSearch type="search" placeholder="search" />
-            <DropDownMenu showMenu={showMenu} show={show} />
+            <StyledSubSection>
+                <StyledLogo>
+                    <Link to="/feed">
+                        <img
+                            src="https://woojoo.s3-us-west-1.amazonaws.com/logo1.png"
+                            alt="company logo"
+                            width="60px"
+                        />
+                    </Link>
+                </StyledLogo>
+                <StyledSearch type="search" placeholder="search" />
+                <DropDownMenu showMenu={showMenu} show={show} />
+            </StyledSubSection>
         </StyledSection>
     );
 };

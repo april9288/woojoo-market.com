@@ -1,5 +1,5 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import React, { Fragment, useContext } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import { AppContext } from '../../context/appContext';
@@ -26,7 +26,13 @@ const DropDownMenu = ({ showMenu, show, history }) => {
     return (
         <Fragment>
             <StyledDropDownButton type="button" onClick={showMenu}>
-                Show Menu &#9660;
+                <img
+                    src="https://woojoo.s3-us-west-1.amazonaws.com/profile100.webp"
+                    alt="profile"
+                    width="50px"
+                />
+                {auth.email}
+                &#9660;
             </StyledDropDownButton>
             {show && (
                 <StyledDropDownMenu>

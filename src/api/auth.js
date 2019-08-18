@@ -18,7 +18,7 @@ export const ApiAuthentication = async (
     try {
         const res = await axios({
             method,
-            url: `${process.env.API_SERVER_DEV}${url}`,
+            url: `${SERVER}${url}`,
             data,
             withCredentials: true,
             headers: {
@@ -26,15 +26,18 @@ export const ApiAuthentication = async (
                 'Access-Control-Allow-Credentials': true
             }
         });
-        const { login, userEmail } = res.data;
+        const { login, userEmail, photo100 } = res.data;
         setAuth({
             login,
             email: userEmail,
+            photo100,
             error: null
         });
     } catch (e) {
+        const { login } = e.response.data;
         setAuth({
             ...defaultContext,
+            login,
             error: ERROR_MESSAGE
         });
     }

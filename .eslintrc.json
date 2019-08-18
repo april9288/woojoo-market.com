@@ -31,6 +31,8 @@
         "import/prefer-default-export": "off",
         "react/jsx-boolean-value": "off",
         "no-nested-ternary": "off",
-        "no-else-return": "off"
+        "no-else-return": "off",
+        "jsx-a11y/label-has-for": "off",
+        "jsx-a11y/label-has-associated-control": "off"
     }
 }

@@ -6,6 +6,8 @@ export const StyledDropDownButton = styled.button`
     color: rgba(0, 0, 0, 0.8);
     font-size: 14px;
     border: transparent;
+    display: flex;
+    align-items: center;
 
     &:hover {
         color: rgba(0, 0, 0, 0.4);
@@ -14,17 +16,23 @@ export const StyledDropDownButton = styled.button`
     a {
         text-decoration: none;
     }
+
+    img {
+        border-radius: 50%;
+        margin-right: 12px;
+    }
 `;
 
 export const StyledDropDownMenu = styled.section`
     position: fixed;
-    right: 25px;
-    top: 50px;
+    right: 20%;
+    top: 7%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background: white;
     width: 12rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
     a,
     button {
@@ -37,7 +45,7 @@ export const StyledDropDownMenu = styled.section`
         color: rgba(0, 0, 0, 0.8);
 
         &:hover {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.1);
         }
     }
 

@@ -17,7 +17,7 @@ const LoginForm = ({
     const [auth, setAuth] = useContext(AppContext);
     const { login, error } = auth;
 
-    if (login) {
+    if (login === true) {
         return <Redirect to="/feed" />;
     }
 
@@ -54,7 +54,9 @@ const LoginForm = ({
                 placeholder="Email"
                 required
             />
-            {error && <StyledWarning>Login Failed</StyledWarning>}
+            {error === 'LOGIN_ERROR' && (
+                <StyledWarning>Login Failed</StyledWarning>
+            )}
             <input
                 type="password"
                 value={password}
@@ -64,7 +66,9 @@ const LoginForm = ({
                 placeholder="Password"
                 required
             />
-            {error && <StyledWarning>Login Failed</StyledWarning>}
+            {error === 'LOGIN_ERROR' && (
+                <StyledWarning>Login Failed</StyledWarning>
+            )}
             <StyledButton type="submit">Log in</StyledButton>
             <StyledForgotPasswordButton>
                 <Link to="/forgotPassword">Forgot Password?</Link>
