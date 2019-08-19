@@ -131,3 +131,54 @@ export const StyledPostCardContent = styled.section`
         }
     }
 `;
+
+export const StyledFollowingsSection = styled.section`
+    width: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    margin: 0.5rem;
+    background: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const StyledFollowingsCard = styled.section`
+    margin: 2%;
+    width: 90%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        img {
+            border-radius: 50%;
+            padding: 2% 5%;
+            cursor: pointer;
+        }
+
+        button {
+            width: 5rem !important;
+            height: 2rem !important;
+            font-size: 1rem;
+            height: 40%;
+            border: transparent;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 2%;
+            background: ${({ att }) => (att ? 'rgba(0,0,0,0.2)' : '#000000e0')};
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.7);
+            }
+        }
+    }
+`;

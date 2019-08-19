@@ -6,8 +6,7 @@ import { AppContext } from '../../context/appContext';
 import { ApiAuthentication } from '../../api/auth';
 import { StyledDropDownButton, StyledDropDownMenu } from './styles';
 
-const defaultPhoto =
-    'https://woojoo.s3-us-west-1.amazonaws.com/profile100.webp';
+import { defaultPhoto100 } from '../../constants/defaultPhotos';
 
 const DropDownMenu = ({ showMenu, show, history }) => {
     const [auth, setAuth] = useContext(AppContext);
@@ -31,7 +30,7 @@ const DropDownMenu = ({ showMenu, show, history }) => {
         <Fragment>
             <StyledDropDownButton type="button" onClick={showMenu}>
                 <img
-                    src={photo100 || defaultPhoto}
+                    src={photo100 || defaultPhoto100}
                     alt="profile"
                     width="50px"
                 />

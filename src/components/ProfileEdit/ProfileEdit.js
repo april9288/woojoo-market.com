@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { ApiProfile } from '../../api/profile';
 import { defaultInputs } from '../../containers/SettingContainer/default';
-
+import { defaultPhoto400 } from '../../constants/defaultPhotos';
 import {
     StyledRightSection,
     StyledSubSection,
@@ -142,7 +142,7 @@ const ProfileEdit = () => {
                         />
                     ) : (
                         <img
-                            src="https://woojoo.s3-us-west-1.amazonaws.com/profile400.webp"
+                            src={defaultPhoto400}
                             alt="preview"
                             width="400"
                             height="400"

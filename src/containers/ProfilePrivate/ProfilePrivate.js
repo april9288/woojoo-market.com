@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { ApiFeed } from '../../api/feed';
+import { ApiProfile } from '../../api/profile';
 import ProfilePrivateTop from '../../components/ProfilePrivateTop';
 import ProfilePostList from '../../components/ProfilePostList';
-// import ChangePassword from '../../components/ProfileChangePassword';
+import ProfileFollowers from '../../components/ProfileFollowers';
 // import DeleteAccount from '../../components/ProfileDeleteAccount';
 import { defaultMenu } from './default';
 import {
@@ -18,8 +19,8 @@ import {
 const defaultPostState = [];
 
 const defaultFollowingState = {
-    followingList: [],
-    followerList: []
+    follower: [],
+    following: []
 };
 
 const ProfilePrivate = () => {
@@ -27,19 +28,19 @@ const ProfilePrivate = () => {
     const [post, setPost] = useState(defaultPostState);
     const [following, setFollowing] = useState(defaultFollowingState);
 
+    console.log('Followings DB Data : ', following);
+
     const counts = {
         Posts: post.length || 0,
-        Followers: following.followingList.length || 0,
-        Following: following.followerList.length || 0
+        Followers: following.follower.length || 0,
+        Following: following.following.length || 0
     };
 
-    console.log('post >>> ', post);
-
-    useEffect(() => {
+    const DeletePost = id => {
         ApiFeed(
             axios,
-            'get',
-            '/api/listPost/private',
+            'delete',
+            `/api/deletePost/${id}`,
             null,
             null,
             post,
@@ -47,15 +48,81 @@ const ProfilePrivate = () => {
             null,
             null
         );
+    };
+
+    const UnfollowFunc = followed => {
+        // unfollowing the person I followed
+        ApiProfile(
+            axios,
+            'delete',
+            '/api/following',
+            {
+                followed
+            },
+            following,
+            setFollowing,
+            null
+        );
+    };
+
+    const FollowFunc = followed => {
+        console.log('follow this person >>> ', followed);
+        ApiProfile(
+            axios,
+            'post',
+            '/api/following',
+            {
+                followed
+            },
+            following,
+            setFollowing,
+            null
+        );
+    };
+
+    useEffect(() => {
+        if (post.length === 0) {
+            // retrieving list of posts
+            ApiFeed(
+                axios,
+                'get',
+                '/api/listPost/private',
+                null,
+                null,
+                post,
+                setPost,
+                null,
+                null
+            );
+
+            // retrieving list of followers and following
+            ApiProfile(
+                axios,
+                'get',
+                '/api/following',
+                null,
+                following,
+                setFollowing,
+                null
+            );
+        }
     }, []);
 
     let bottomSection;
     switch (menu) {
         case 'Posts':
-            bottomSection = <ProfilePostList postList={post} />;
+            bottomSection = (
+                <ProfilePostList postList={post} DeletePost={DeletePost} />
+            );
             break;
         case 'Followers':
-            bottomSection = <h1>...Followers</h1>;
+            bottomSection = (
+                <ProfileFollowers
+                    {...following}
+                    UnfollowFunc={UnfollowFunc}
+                    FollowFunc={FollowFunc}
+                />
+            );
             break;
         case 'Following':
             bottomSection = <h1>...Following</h1>;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 import { ApiProfile } from '../../api/profile';
+import { defaultPhoto400 } from '../../constants/defaultPhotos';
 import {
     StyledTopSubSection,
     StyledButtonSection
@@ -36,7 +37,11 @@ const ProfilePrivateTop = ({ history }) => {
     return (
         <Fragment>
             <StyledTopSubSection>
-                <img src={photo400} alt="my-pic" width="400px" />
+                <img
+                    src={photo400 || defaultPhoto400}
+                    alt="my-pic"
+                    width="400px"
+                />
                 <section>
                     <p>{firstname}</p>
                     <p>{email}</p>

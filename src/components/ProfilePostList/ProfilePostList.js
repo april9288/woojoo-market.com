@@ -9,9 +9,7 @@ import {
     StyledPostCardContent
 } from '../../containers/ProfilePrivate/styles';
 
-const ProfilePostList = ({ postList, history }) => {
-    // console.log('>>>>>>>>>', postList);
-
+const ProfilePostList = ({ postList, DeletePost, history }) => {
     const EditPost = () => {
         alert('Sorry!. Still working on it...');
     };

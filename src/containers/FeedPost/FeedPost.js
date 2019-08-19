@@ -25,13 +25,14 @@ const defaultPost = {
     brand: '',
     price: 0,
     success: false,
-    error: null
+    error: null,
+    loading: false
 };
 
 const FeedDetail = ({ history }) => {
     const [post, setPost] = useState(defaultPost);
     const [preview, setPreview] = useState(null);
-    const { image, success, error } = post;
+    const { image, success, error, loading } = post;
 
     // when the feed is successfully posted, then it'll redirect the user to the detail page
     // eslint-disable-next-line consistent-return
@@ -81,6 +82,12 @@ const FeedDetail = ({ history }) => {
             // get all the key values in 'post' state
             const data = Object.keys(post);
             data.forEach(key => formData.append(key, post[key]));
+
+            //
+            setPost({
+                ...post,
+                loading: true
+            });
 
             // makeing an Ajax request via axios
             ApiCreatePost(axios, formData, post, setPost);
@@ -158,7 +165,7 @@ const FeedDetail = ({ history }) => {
             )}
             <StyledButton>
                 <button type="button" onClick={handleSubmit}>
-                    Submit
+                    {loading ? 'Loading...' : 'Submit'}
                 </button>
             </StyledButton>
         </StyledSection>
