@@ -30,7 +30,7 @@ const ProfileEdit = () => {
             ApiProfile(
                 axios,
                 'get',
-                '/api/profile/private',
+                '/api/profile',
                 null,
                 profile,
                 setProfile,

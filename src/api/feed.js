@@ -15,8 +15,6 @@ export const ApiFeed = async (
     setScroll
 ) => {
     try {
-        console.log('api calling >>>>>>>', params);
-
         const res = await axios({
             method,
             url: `${SERVER}${url}`,

@@ -26,7 +26,7 @@ export const StyledDropDownButton = styled.button`
 export const StyledDropDownMenu = styled.section`
     position: fixed;
     right: 20%;
-    top: 7%;
+    top: 8%;
     display: flex;
     flex-direction: column;
     justify-content: center;

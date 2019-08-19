@@ -3,7 +3,6 @@ const SERVER =
         ? process.env.API_SERVER_DEV
         : process.env.API_SERVER_PROD;
 
-// This is resuable for Login, Signup, Logout and basic auth checking
 export const ApiProfile = async (
     axios,
     method,
