@@ -26,7 +26,7 @@ export const StyledKey = styled.section`
     font-size: 25px;
     line-height: 24px;
     font-weight: 500;
-    width: 12%;
+    width: 20%;
 `;
 
 export const StyledPhotoKey = styled.section`
@@ -90,10 +90,8 @@ export const StyledInput = styled.section`
     width: 100%;
 
     input {
-        width: ${props =>
-            props.att === 'Title' || props.att === 'Description'
-                ? '100%'
-                : '20%'};
+        width: ${({ att }) =>
+            att === 'Title' || att === 'Description' ? '80%' : '20%'};
         padding: 8px 12px;
         font-size: 14px;
         min-height: 36px;
@@ -101,6 +99,18 @@ export const StyledInput = styled.section`
         border: 1px solid #c1bfbc;
         border-radius: 2px;
         color: #4a4a4a;
+    }
+
+    select {
+        padding: 8px 12px;
+        font-size: 14px;
+        background: transparent;
+        border: 1px solid #c1bfbc;
+        border-radius: 2px;
+        color: #4a4a4a;
+        line-height: 36px;
+        height: 3.4rem;
+        width: 16rem;
     }
 `;
 

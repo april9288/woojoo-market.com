@@ -6,19 +6,39 @@ export const StyledCardSection = styled.section`
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     background: white;
-    cursor: pointer;
+`;
+
+export const StyledProfileSection = styled.section`
+    display: flex;
+    margin-bottom: 20px;
+
+    img {
+        cursor: pointer;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+    }
 
     p {
-        margin: 0.5rem 0.5rem;
-        font-size: 14px;
+        margin: 0.3rem 0;
+        font-size: 0.8rem;
+    }
+
+    h4 {
+        cursor: pointer;
+        margin: 0.3rem 0;
     }
 `;
 
-export const StyledTitle = styled.p`
-    font-size: 20px !important;
-`;
+export const StyledItemSection = styled.section`
+    cursor: pointer;
 
-export const StyledPrice = styled.p`
-    font-size: 20px !important;
-    font-weight: bold;
+    h3 {
+        margin: 0.5rem 0;
+    }
+
+    p {
+        margin: 0.5rem 0;
+    }
 `;

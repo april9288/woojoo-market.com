@@ -20,10 +20,31 @@ export const defaultInputs = [
         ERROR_MESSAGE: null
     },
     {
-        title: 'Address',
+        title: 'Address 1',
         type: 'text',
-        db: 'address',
+        db: 'address1',
         placeholder: 'Enter Your Address',
+        ERROR_MESSAGE: null
+    },
+    {
+        title: 'Address 2',
+        type: 'text',
+        db: 'address2',
+        placeholder: '(optional) apt, suite, unit, floor, etc.',
+        ERROR_MESSAGE: null
+    },
+    {
+        title: 'City',
+        type: 'text',
+        db: 'city',
+        placeholder: 'Enter your city',
+        ERROR_MESSAGE: null
+    },
+    {
+        title: 'State',
+        type: 'text',
+        db: 'state',
+        placeholder: 'Enter your state',
         ERROR_MESSAGE: null
     },
     {
@@ -45,6 +66,13 @@ export const defaultInputs = [
         type: 'text',
         db: 'website',
         placeholder: 'Enter Your Web URL',
+        ERROR_MESSAGE: null
+    },
+    {
+        title: 'Info',
+        type: 'text',
+        db: 'info',
+        placeholder: '(optional) any information',
         ERROR_MESSAGE: null
     }
 ];

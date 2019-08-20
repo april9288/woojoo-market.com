@@ -14,10 +14,10 @@ export const ApiCreatePost = async (axios, formData, post, setPost) => {
             }
         });
 
-        const { id } = res.data.data;
+        const { uuid } = res.data;
         setPost({
             ...post,
-            success: id
+            success: uuid
         });
     } catch (err) {
         setPost({

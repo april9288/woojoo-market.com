@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const StyledWrapperSection = styled.section`
+    min-height: 100vh;
+`;
+
 export const StyledSection = styled.section`
     display: flex;
     flex-direction: row;
@@ -62,18 +66,18 @@ export const StyledKey = styled.section`
     font-size: 20px;
     line-height: 24px;
     font-weight: 500;
-    width: ${props =>
-        props.att === 'newPassword' || props.att === 'newPassword2'
-            ? '70%'
-            : '30%'};
+    width: ${({ att }) =>
+        att === 'newPassword' || att === 'newPassword2' ? '70%' : '30%'};
 `;
 
 export const StyledInput = styled.section`
     width: 100%;
 
     input {
-        width: ${props =>
-            props.att === 'address' || props.att === 'website' ? '80%' : '50%'};
+        width: ${({ att }) =>
+            att === 'address1' || att === 'address2' || att === 'website'
+                ? '80%'
+                : '50%'};
         padding: 8px 12px;
         font-size: 14px;
         border: 1px solid #c1bfbc;
@@ -98,7 +102,8 @@ export const StyledButton = styled.section`
         border: transparent;
         color: white;
         border-radius: 3px;
-        background: #000000e0;
+        background: ${({ att }) =>
+            att === 'updated' || att === true ? '#c26c7b' : '#000000e0'};
         cursor: pointer;
 
         &:hover {

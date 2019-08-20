@@ -3,7 +3,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 import { ApiCreatePost } from '../../api/createPost';
-
+import { defaultPost, defaultInputs } from './default';
 import {
     StyledSection,
     StyledSubSection,
@@ -16,18 +16,6 @@ import {
     StyledDeleteButton,
     StyledWarning
 } from './styles';
-
-const defaultPost = {
-    image: null,
-    title: '',
-    description: '',
-    category: '',
-    brand: '',
-    price: 0,
-    success: false,
-    error: null,
-    loading: false
-};
 
 const FeedDetail = ({ history }) => {
     const [post, setPost] = useState(defaultPost);
@@ -94,6 +82,68 @@ const FeedDetail = ({ history }) => {
         }
     };
 
+    const handleInputField = item => {
+        const { type, db, placeholder } = item;
+        if (db === 'category') {
+            return (
+                <select
+                    value={post[db]}
+                    onChange={e =>
+                        setPost({
+                            ...post,
+                            [db]: e.target.value
+                        })
+                    }
+                >
+                    <option value="Select a Category">Select a Category</option>
+                    <option value="drones">drones</option>
+                    <option value="watches">watches</option>
+                    <option value="headphones">headphones</option>
+                    <option value="game">game</option>
+                    <option value="cameras">cameras</option>
+                    <option value="robots">robots</option>
+                    <option value="hobbies">hobbies</option>
+                    <option value="computers">computers</option>
+                    <option value="electronics">electronics</option>
+                    <option value="etc">etc</option>
+                </select>
+            );
+        } else if (db === 'condition') {
+            return (
+                <select
+                    value={post[db]}
+                    onChange={e =>
+                        setPost({
+                            ...post,
+                            [db]: e.target.value
+                        })
+                    }
+                >
+                    <option value="new">new</option>
+                    <option value="used - like new">used - like new</option>
+                    <option value="used - very good">used - very good</option>
+                    <option value="used - good">used - good</option>
+                </select>
+            );
+        } else {
+            // eslint-disable-next-line consistent-return
+            return (
+                <input
+                    type={type}
+                    value={post[db]}
+                    required={true}
+                    placeholder={placeholder}
+                    onChange={e =>
+                        setPost({
+                            ...post,
+                            [db]: e.target.value
+                        })
+                    }
+                />
+            );
+        }
+    };
+
     return (
         <StyledSection>
             <StyledSubSection>
@@ -141,28 +191,17 @@ const FeedDetail = ({ history }) => {
                 </StyledPreview>
             </StyledSubSection>
 
-            {['Title', 'Description', 'Category', 'Brand', 'Price'].map(
-                item => {
-                    return (
-                        <StyledSubSection key={item}>
-                            <StyledKey>{item}</StyledKey>
-                            <StyledInput att={item}>
-                                <input
-                                    type="text"
-                                    value={post[item.toLowerCase()]}
-                                    required={true}
-                                    onChange={e =>
-                                        setPost({
-                                            ...post,
-                                            [item.toLowerCase()]: e.target.value
-                                        })
-                                    }
-                                />
-                            </StyledInput>
-                        </StyledSubSection>
-                    );
-                }
-            )}
+            {defaultInputs.map(item => {
+                const { field } = item;
+                return (
+                    <StyledSubSection key={field}>
+                        <StyledKey>{field}</StyledKey>
+                        <StyledInput att={field}>
+                            {handleInputField(item)}
+                        </StyledInput>
+                    </StyledSubSection>
+                );
+            })}
             <StyledButton>
                 <button type="button" onClick={handleSubmit}>
                     {loading ? 'Loading...' : 'Submit'}

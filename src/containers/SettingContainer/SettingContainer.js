@@ -4,7 +4,12 @@ import ProfileEdit from '../../components/ProfileEdit';
 import ChangePassword from '../../components/ProfileChangePassword';
 import DeleteAccount from '../../components/ProfileDeleteAccount';
 import { defaultMenu } from './default';
-import { StyledSection, StyledLeftSection, StyledMenu } from './styles';
+import {
+    StyledWrapperSection,
+    StyledSection,
+    StyledLeftSection,
+    StyledMenu
+} from './styles';
 
 const SettingContainer = () => {
     const [menu, setMenu] = useState('Edit Profile');
@@ -31,20 +36,22 @@ const SettingContainer = () => {
     };
 
     return (
-        <StyledSection>
-            <StyledLeftSection>
-                <p>Account Settings</p>
-                {defaultMenu.map(oneMenu => (
-                    <StyledMenu
-                        key={oneMenu}
-                        onClick={() => changeMenu(oneMenu)}
-                    >
-                        {oneMenu}
-                    </StyledMenu>
-                ))}
-            </StyledLeftSection>
-            {rightSection}
-        </StyledSection>
+        <StyledWrapperSection>
+            <StyledSection>
+                <StyledLeftSection>
+                    <p>Account Settings</p>
+                    {defaultMenu.map(oneMenu => (
+                        <StyledMenu
+                            key={oneMenu}
+                            onClick={() => changeMenu(oneMenu)}
+                        >
+                            {oneMenu}
+                        </StyledMenu>
+                    ))}
+                </StyledLeftSection>
+                {rightSection}
+            </StyledSection>
+        </StyledWrapperSection>
     );
 };
 

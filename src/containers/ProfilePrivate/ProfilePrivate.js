@@ -3,14 +3,13 @@ import axios from 'axios';
 
 import { ApiFeed } from '../../api/feed';
 import { ApiProfile } from '../../api/profile';
-import ProfilePrivateTop from '../../components/ProfilePrivateTop';
+import ProfileDisplayTop from '../../components/ProfileDisplayTop';
 import ProfilePostList from '../../components/ProfilePostList';
 import ProfileFollowers from '../../components/ProfileFollowers';
-// import DeleteAccount from '../../components/ProfileDeleteAccount';
+import ProfileFollowing from '../../components/ProfileFollowing';
 import { defaultMenu } from './default';
 import {
     StyledSection,
-    StyledTopSection,
     StyledMenuSection,
     StyledMenuButton,
     StyledBottomSection
@@ -28,13 +27,15 @@ const ProfilePrivate = () => {
     const [post, setPost] = useState(defaultPostState);
     const [following, setFollowing] = useState(defaultFollowingState);
 
-    console.log('Followings DB Data : ', following);
+    // console.log('Followings DB Data : ', following);
 
     const counts = {
         Posts: post.length || 0,
         Followers: following.follower.length || 0,
         Following: following.following.length || 0
     };
+
+    console.log('list of posts >>> ', post);
 
     const DeletePost = id => {
         ApiFeed(
@@ -66,7 +67,6 @@ const ProfilePrivate = () => {
     };
 
     const FollowFunc = followed => {
-        console.log('follow this person >>> ', followed);
         ApiProfile(
             axios,
             'post',
@@ -86,7 +86,7 @@ const ProfilePrivate = () => {
             ApiFeed(
                 axios,
                 'get',
-                '/api/listPost/private',
+                '/api/listPost/me',
                 null,
                 null,
                 post,
@@ -99,7 +99,7 @@ const ProfilePrivate = () => {
             ApiProfile(
                 axios,
                 'get',
-                '/api/following',
+                '/api/following/me',
                 null,
                 following,
                 setFollowing,
@@ -125,7 +125,13 @@ const ProfilePrivate = () => {
             );
             break;
         case 'Following':
-            bottomSection = <h1>...Following</h1>;
+            bottomSection = (
+                <ProfileFollowing
+                    {...following}
+                    UnfollowFunc={UnfollowFunc}
+                    FollowFunc={FollowFunc}
+                />
+            );
             break;
         default:
             bottomSection = null;
@@ -139,9 +145,7 @@ const ProfilePrivate = () => {
 
     return (
         <StyledSection>
-            <StyledTopSection>
-                <ProfilePrivateTop />
-            </StyledTopSection>
+            <ProfileDisplayTop me={true} />
             <StyledMenuSection>
                 {defaultMenu.map(oneMenu => (
                     <StyledMenuButton
@@ -155,7 +159,7 @@ const ProfilePrivate = () => {
                     </StyledMenuButton>
                 ))}
             </StyledMenuSection>
-            <StyledBottomSection>{bottomSection}</StyledBottomSection>
+            {/* <StyledBottomSection>{bottomSection}</StyledBottomSection> */}
         </StyledSection>
     );
 };

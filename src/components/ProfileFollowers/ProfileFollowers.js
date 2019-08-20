@@ -48,6 +48,7 @@ const ProfileFollowers = ({
                                 </button>
                             ) : (
                                 // I'm not following this person.
+                                // so, if I click it, then I will follow this person
                                 <button
                                     type="button"
                                     onClick={() => FollowFunc(val.follower)}

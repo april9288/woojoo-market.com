@@ -22,7 +22,9 @@ import {
 const ProfileEdit = () => {
     const [profile, setProfile] = useState('');
     const [preview, setPreview] = useState(null);
-    const { photo400, error, status } = profile;
+    const [edit, setEdit] = useState({ status: false });
+    const { photo400, error, stay } = profile;
+    const { status } = edit;
 
     useEffect(() => {
         // involking the function only once
@@ -30,7 +32,7 @@ const ProfileEdit = () => {
             ApiProfile(
                 axios,
                 'get',
-                '/api/profile',
+                '/api/editProfile',
                 null,
                 profile,
                 setProfile,
@@ -42,7 +44,7 @@ const ProfileEdit = () => {
     useEffect(() => {
         // updating the profile photo only when the data is retrived from the server
         setPreview(photo400);
-    }, [status]);
+    }, [stay]);
 
     const handleFile = e => {
         setProfile({
@@ -55,14 +57,14 @@ const ProfileEdit = () => {
     };
 
     const DeleteFile = () => {
+        // deleting preview
+        setPreview(null);
+
         // deleting image file in 'post' state
         setProfile({
             ...profile,
             photo400: null
         });
-
-        // deleting preview
-        setPreview(null);
     };
 
     const firstValidation = () => {
@@ -91,20 +93,9 @@ const ProfileEdit = () => {
                 'post',
                 '/api/editProfile',
                 formData,
-                profile,
-                setProfile,
+                edit,
+                setEdit,
                 null
-            );
-        }
-    };
-
-    // eslint-disable-next-line consistent-return
-    const handleSuccessMessage = result => {
-        if (result === 'updated') {
-            return (
-                <StyledInforming>
-                    You&apos;ve successfully updated your profile
-                </StyledInforming>
             );
         }
     };
@@ -112,7 +103,6 @@ const ProfileEdit = () => {
     return (
         <StyledRightSection>
             <p>Edit Profile</p>
-            {handleSuccessMessage(status)}
             <StyledSubSection>
                 <StyledPhotoKey>
                     Profile Photo
@@ -181,9 +171,9 @@ const ProfileEdit = () => {
                     </StyledCell>
                 );
             })}
-            <StyledButton>
+            <StyledButton att={status}>
                 <button type="button" onClick={handleSubmit}>
-                    Submit
+                    {status === 'updated' ? 'Updated' : 'Submit'}
                 </button>
             </StyledButton>
         </StyledRightSection>

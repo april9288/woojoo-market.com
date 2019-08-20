@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const StyledSection = styled.section`
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 `;
 
 export const StyledTopSection = styled.section`
     height: 500px;
-
     background: url(https://woojoo.s3-us-west-1.amazonaws.com/c6.png);
     background-repeat: no-repeat;
     background-size: cover;

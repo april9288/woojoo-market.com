@@ -26,10 +26,12 @@ export const ApiAuthentication = async (
                 'Access-Control-Allow-Credentials': true
             }
         });
-        const { login, userEmail, photo100 } = res.data;
+        const { login, id, userEmail, uuid, photo100 } = res.data;
         setAuth({
             login,
+            id,
             email: userEmail,
+            uuid,
             photo100,
             error: null
         });

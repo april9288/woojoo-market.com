@@ -1,6 +1,8 @@
 export default {
     login: false,
-    email: null,
-    photo100: null,
+    id: null,
+    email: '',
+    uuid: '',
+    photo100: '',
     error: null
 };

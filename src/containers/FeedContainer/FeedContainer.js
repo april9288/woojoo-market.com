@@ -31,7 +31,10 @@ const FeedContainer = () => {
     };
 
     useEffect(() => {
-        loadMore();
+        // will involk it only one time
+        if (feed.length === 0) {
+            loadMore();
+        }
     }, []);
 
     const CardComponent = feed.map(item => <Card key={item.id} {...item} />);

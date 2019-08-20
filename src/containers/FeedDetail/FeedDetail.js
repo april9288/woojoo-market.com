@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -5,34 +6,45 @@ import { ApiFeed } from '../../api/feed';
 import { TimeCalculator } from '../../api/time';
 import {
     StyledSection,
+    StyledPhotoPreviewSection,
     StyledPhotoSection,
-    StyledDetailSection
+    StyledRightSection,
+    StyledProfileSection,
+    StyledItemSection,
+    StyledDetail,
+    StyledButtons
 } from './styles';
+
+import { defaultPhoto100 } from '../../constants/defaultPhotos';
 
 const FeedDetail = ({ match }) => {
     const [detail, setDetail] = useState([]);
-    const { id } = match.params;
+    const { puuid } = match.params;
     const {
+        id,
+        uuid,
         email,
+        user_private_id,
+        user_public_id,
+        user_photo100,
+        photo550,
+        photo100,
         title,
         description,
-        brand,
         category,
-        color,
-        photo100,
-        photo400,
-        photo550,
+        brand,
+        status,
+        condition,
+        quantity,
         price,
         timestamps
     } = detail;
-
-    console.log('Detail >>>> ', detail);
 
     useEffect(() => {
         ApiFeed(
             axios,
             'get',
-            `/api/postDetail/${id}`,
+            `/api/postDetail/${puuid}`,
             null,
             null,
             detail,
@@ -43,20 +55,45 @@ const FeedDetail = ({ match }) => {
 
     return (
         <StyledSection>
+            <StyledPhotoPreviewSection>
+                <img src={photo100} alt={title} />
+            </StyledPhotoPreviewSection>
             <StyledPhotoSection>
                 <img src={photo550} alt={title} />
             </StyledPhotoSection>
-            <StyledDetailSection>
-                <p>{email}</p>
-                <p>{TimeCalculator(timestamps)}</p>
-                <p>{title}</p>
-                <p>{description}</p>
-                <p>{brand}</p>
-                <p>
-                    <span>$</span>
-                    {price}
-                </p>
-            </StyledDetailSection>
+            <StyledRightSection>
+                <StyledProfileSection>
+                    <img
+                        src={user_photo100 || defaultPhoto100}
+                        alt="user 100"
+                    />
+                    <section>
+                        <h4>{email}</h4>
+                        <p>{TimeCalculator(timestamps)}</p>
+                    </section>
+                </StyledProfileSection>
+
+                <StyledItemSection>
+                    <h1>{title}</h1>
+                    <p>{`$${price}`}</p>
+                    <section>
+                        <h5>Available Quantity</h5>
+                        <div>{quantity}</div>
+                    </section>
+                </StyledItemSection>
+
+                <StyledDetail>
+                    <p>{`Description : ${description}`}</p>
+                    <p>{`Category : ${category}`}</p>
+                    <p>{`Brand : ${brand}`}</p>
+                    <p>{`Condition : ${condition}`}</p>
+                </StyledDetail>
+
+                <StyledButtons>
+                    <button type="button">Buy Now</button>
+                    <button type="button">Add to Cart</button>
+                </StyledButtons>
+            </StyledRightSection>
         </StyledSection>
     );
 };

@@ -39,17 +39,6 @@ const changePassword = () => {
     };
 
     // eslint-disable-next-line consistent-return
-    const handleSuccessMessage = result => {
-        if (result === true) {
-            return (
-                <StyledInforming>
-                    You&apos;ve successfully changed your password
-                </StyledInforming>
-            );
-        }
-    };
-
-    // eslint-disable-next-line consistent-return
     const handleErrorMessage = (db, pw1, pw2) => {
         if (db === 'newPassword') {
             if (pw1.length > 0 && pw1.length < 3) {
@@ -65,7 +54,6 @@ const changePassword = () => {
     return (
         <StyledRightSection>
             <p>Change Password</p>
-            {handleSuccessMessage(status)}
             {defaultChangePasswordInputs.map(item => {
                 const { title, type, db, placeholder } = item;
                 return (
@@ -93,9 +81,9 @@ const changePassword = () => {
                     </StyledCell>
                 );
             })}
-            <StyledButton>
+            <StyledButton att={status}>
                 <button type="button" onClick={handleSubmit}>
-                    Change
+                    {status === true ? 'Updated' : 'Change'}
                 </button>
             </StyledButton>
         </StyledRightSection>
