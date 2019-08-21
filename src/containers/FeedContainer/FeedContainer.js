@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { ApiFeed } from '../../api/feed';
@@ -14,6 +14,8 @@ const FeedContainer = () => {
     const [feed, setFeed] = useState([]);
     const [scroll, setScroll] = useState(defaultScroll);
     const { offset, loading } = scroll;
+
+    console.log('feeed : ', feed);
 
     const loadMore = () => {
         setScroll({ ...scroll, loading: true });

@@ -7,7 +7,11 @@ import ProfileDisplayTop from '../../components/ProfileDisplayTop';
 import ProfilePostList from '../../components/ProfilePostList';
 import ProfileFollowers from '../../components/ProfileFollowers';
 import ProfileFollowing from '../../components/ProfileFollowing';
-import { defaultMenu } from './default';
+import {
+    defaultMenu,
+    defaultPostState,
+    defaultFollowingState
+} from './default';
 import {
     StyledSection,
     StyledMenuSection,
@@ -15,40 +19,15 @@ import {
     StyledBottomSection
 } from './styles';
 
-const defaultPostState = [];
-
-const defaultFollowingState = {
-    follower: [],
-    following: []
-};
-
 const ProfilePrivate = () => {
     const [menu, setMenu] = useState('Posts');
     const [post, setPost] = useState(defaultPostState);
     const [following, setFollowing] = useState(defaultFollowingState);
 
-    // console.log('Followings DB Data : ', following);
-
     const counts = {
         Posts: post.length || 0,
         Followers: following.follower.length || 0,
         Following: following.following.length || 0
-    };
-
-    console.log('list of posts >>> ', post);
-
-    const DeletePost = id => {
-        ApiFeed(
-            axios,
-            'delete',
-            `/api/deletePost/${id}`,
-            null,
-            null,
-            post,
-            setPost,
-            null,
-            null
-        );
     };
 
     const UnfollowFunc = followed => {
@@ -112,7 +91,7 @@ const ProfilePrivate = () => {
     switch (menu) {
         case 'Posts':
             bottomSection = (
-                <ProfilePostList postList={post} DeletePost={DeletePost} />
+                <ProfilePostList postList={post} publicProfile={false} />
             );
             break;
         case 'Followers':
@@ -145,7 +124,7 @@ const ProfilePrivate = () => {
 
     return (
         <StyledSection>
-            <ProfileDisplayTop me={true} />
+            <ProfileDisplayTop publicProfile={false} />
             <StyledMenuSection>
                 {defaultMenu.map(oneMenu => (
                     <StyledMenuButton
@@ -159,7 +138,7 @@ const ProfilePrivate = () => {
                     </StyledMenuButton>
                 ))}
             </StyledMenuSection>
-            {/* <StyledBottomSection>{bottomSection}</StyledBottomSection> */}
+            <StyledBottomSection>{bottomSection}</StyledBottomSection>
         </StyledSection>
     );
 };

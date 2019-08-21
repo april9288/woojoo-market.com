@@ -11,7 +11,11 @@ const Profile = ({ match }) => {
         <Fragment>
             <FeedNav />
             <Route exact path={`${match.path}`} component={ProfilePrivate} />
-            <Route path={`${match.path}/:id`} component={ProfilePublic} />
+            <Route
+                exact
+                path={`${match.path}/:uuid`}
+                component={ProfilePublic}
+            />
             <GlobalFooter />
         </Fragment>
     );

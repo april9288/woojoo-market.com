@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -8,32 +10,66 @@ import {
 } from '../../containers/ProfilePrivate/styles';
 
 const ProfileFollowers = ({
-    follower,
+    groupA,
     following,
     UnfollowFunc,
     FollowFunc,
     history
 }) => {
+    console.log('your following', following);
+    console.log('my following ', groupA);
+
     return (
         <StyledFollowingsSection>
             {following.map(val => {
+                let commonGroup = [];
+                if (groupA) {
+                    commonGroup = groupA.filter(
+                        item => item.followed === val.followed
+                    );
+                }
+
                 return (
-                    <StyledFollowingsCard key={val.followed}>
-                        <div>
+                    <StyledFollowingsCard
+                        key={val.followed}
+                        att={commonGroup.length}
+                    >
+                        <div
+                            role="button"
+                            onClick={() =>
+                                history.push(`/profile/${val.user_public_id}`)
+                            }
+                        >
                             <img
                                 alt={val.followed}
-                                src={val.photo100 || defaultPhoto100}
+                                src={val.user_photo100 || defaultPhoto100}
                                 width="100px"
                             />
-                            <p>{val.followed}</p>
+                            <p>{val.email}</p>
                         </div>
                         <div>
-                            <button
-                                type="button"
-                                onClick={() => UnfollowFunc(val.followed)}
-                            >
-                                Following
-                            </button>
+                            {!groupA ? (
+                                <button
+                                    type="button"
+                                    onClick={() => UnfollowFunc(val.followed)}
+                                >
+                                    Following
+                                </button>
+                            ) : commonGroup.length === 1 ? (
+                                <button
+                                    type="button"
+                                    onClick={() => UnfollowFunc(val.followed)}
+                                >
+                                    Following
+                                </button>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => FollowFunc(val.followed)}
+                                >
+                                    Follow
+                                </button>
+                            )}
                         </div>
                     </StyledFollowingsCard>
                 );

@@ -7,31 +7,24 @@ import ProfileDisplayTop from '../../components/ProfileDisplayTop';
 import ProfilePostList from '../../components/ProfilePostList';
 import ProfileFollowers from '../../components/ProfileFollowers';
 import ProfileFollowing from '../../components/ProfileFollowing';
-import { defaultMenu } from '../ProfilePrivate/default';
+import {
+    defaultMenu,
+    defaultPostState,
+    defaultFollowingState
+} from '../ProfilePrivate/default';
 import {
     StyledSection,
-    StyledTopSection,
     StyledMenuSection,
     StyledMenuButton,
     StyledBottomSection
 } from '../ProfilePrivate/styles';
 
-const defaultPostState = [];
-
-const defaultFollowingState = {
-    follower: [],
-    following: []
-};
-
 const ProfilePublic = ({ match }) => {
-    const { id } = match.params;
-    console.log('>>>>>>>>>>> id >>>', id);
-
+    const { uuid } = match.params;
     const [menu, setMenu] = useState('Posts');
     const [post, setPost] = useState(defaultPostState);
     const [following, setFollowing] = useState(defaultFollowingState);
-
-    // console.log('Followings DB Data : ', following);
+    const [myFollowing, setMyFollowing] = useState(defaultFollowingState);
 
     const counts = {
         Posts: post.length || 0,
@@ -48,8 +41,8 @@ const ProfilePublic = ({ match }) => {
             {
                 followed
             },
-            following,
-            setFollowing,
+            myFollowing,
+            setMyFollowing,
             null
         );
     };
@@ -62,49 +55,61 @@ const ProfilePublic = ({ match }) => {
             {
                 followed
             },
-            following,
-            setFollowing,
+            myFollowing,
+            setMyFollowing,
             null
         );
     };
 
     useEffect(() => {
-        if (post.length === 0) {
-            // retrieving list of posts
-            ApiFeed(
-                axios,
-                'get',
-                '/api/listPost/private',
-                null,
-                null,
-                post,
-                setPost,
-                null,
-                null
-            );
+        // retrieving list of posts
+        ApiFeed(
+            axios,
+            'get',
+            `/api/listPost/${uuid}`,
+            null,
+            null,
+            post,
+            setPost,
+            null,
+            null
+        );
 
-            // retrieving list of followers and following
-            // ApiProfile(
-            //     axios,
-            //     'get',
-            //     '/api/following',
-            //     null,
-            //     following,
-            //     setFollowing,
-            //     null
-            // );
-        }
-    }, []);
+        // retrieving list of followers and following
+        ApiProfile(
+            axios,
+            'get',
+            `/api/following/${uuid}`,
+            null,
+            following,
+            setFollowing,
+            null
+        );
+
+        // retrieving list of followers and following
+        ApiProfile(
+            axios,
+            'get',
+            '/api/following/me',
+            null,
+            myFollowing,
+            setMyFollowing,
+            null
+        );
+    }, [uuid]);
 
     let bottomSection;
     switch (menu) {
         case 'Posts':
-            bottomSection = <ProfilePostList postList={post} />;
+            bottomSection = (
+                <ProfilePostList postList={post} publicProfile={true} />
+            );
             break;
         case 'Followers':
             bottomSection = (
                 <ProfileFollowers
-                    {...following}
+                    follower={following.follower}
+                    following={myFollowing.following}
                     UnfollowFunc={UnfollowFunc}
                     FollowFunc={FollowFunc}
                 />
@@ -113,7 +118,8 @@ const ProfilePublic = ({ match }) => {
         case 'Following':
             bottomSection = (
                 <ProfileFollowing
-                    {...following}
+                    groupA={myFollowing.following}
+                    following={following.following}
                     UnfollowFunc={UnfollowFunc}
                     FollowFunc={FollowFunc}
                 />
@@ -131,9 +137,7 @@ const ProfilePublic = ({ match }) => {
 
     return (
         <StyledSection>
-            <StyledTopSection>
-                {/* <ProfileDisplayTop user={id} /> */}
-            </StyledTopSection>
+            <ProfileDisplayTop publicProfile={true} publicUUID={uuid} />
             <StyledMenuSection>
                 {defaultMenu.map(oneMenu => (
                     <StyledMenuButton

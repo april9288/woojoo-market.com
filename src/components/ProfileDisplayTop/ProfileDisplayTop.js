@@ -17,7 +17,7 @@ const defualtProfile = {
     firstname: ''
 };
 
-const ProfileDisplayTop = ({ me, history }) => {
+const ProfileDisplayTop = ({ publicProfile, publicUUID, history }) => {
     const [auth] = useContext(AppContext);
     const [profile, setProfile] = useState(defualtProfile);
     const {
@@ -30,9 +30,9 @@ const ProfileDisplayTop = ({ me, history }) => {
         website
     } = profile;
 
+    // will request data for the current user (private profile)
     useEffect(() => {
-        // will involk only once
-        if (me && auth.uuid) {
+        if (!publicProfile && auth.uuid) {
             ApiProfile(
                 axios,
                 'get',
@@ -45,8 +45,23 @@ const ProfileDisplayTop = ({ me, history }) => {
         }
     }, [auth]);
 
+    // will request data for the other user (public profile)
+    useEffect(() => {
+        if (publicProfile) {
+            ApiProfile(
+                axios,
+                'get',
+                `/api/profile/${publicUUID}`,
+                null,
+                profile,
+                setProfile,
+                null
+            );
+        }
+    }, [publicUUID]);
+
     return (
-        <StyledTopSection bg={cover1000}>
+        <StyledTopSection bg={`url(${cover1000})`}>
             <StyledTopSubSection>
                 <img
                     src={photo400 || defaultPhoto400}
@@ -58,11 +73,16 @@ const ProfileDisplayTop = ({ me, history }) => {
                     <p>{email}</p>
                 </section>
             </StyledTopSubSection>
-            <StyledButtonSection>
-                <button type="button" onClick={() => history.push('/settings')}>
-                    Edit Profile
-                </button>
-            </StyledButtonSection>
+            {!publicProfile && (
+                <StyledButtonSection>
+                    <button
+                        type="button"
+                        onClick={() => history.push('/settings')}
+                    >
+                        Edit Profile
+                    </button>
+                </StyledButtonSection>
+            )}
         </StyledTopSection>
     );
 };

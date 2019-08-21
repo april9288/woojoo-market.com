@@ -8,7 +8,7 @@ export const StyledSection = styled.section`
 
 export const StyledTopSection = styled.section`
     height: 500px;
-    background: url(https://woojoo.s3-us-west-1.amazonaws.com/c6.png);
+    background: ${({ bg }) => bg};
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -96,6 +96,7 @@ export const StyledBottomSubSection = styled.section`
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 `;
 
 export const StyledPostCard = styled.section`
@@ -115,20 +116,30 @@ export const StyledPostCard = styled.section`
 export const StyledPostCardContent = styled.section`
     padding: 2%;
 
-    button {
-        font-size: 1rem;
-        height: 40%;
-        border: transparent;
+    h5 {
+        background: #3c68bb;
         color: white;
-        border-radius: 3px;
-        background: #000000e0;
-        cursor: pointer;
+        width: 90px;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 1rem;
+        margin: 0;
+    }
+`;
 
-        margin: 2%;
+export const StyledPostCardButtons = styled.button`
+    font-size: 1rem;
+    height: 40%;
+    border: transparent;
+    color: white;
+    border-radius: 3px;
+    background: ${({ deleted }) =>
+        deleted === 'yes' ? '#c26c7b' : '#000000e0'};
+    cursor: pointer;
+    margin: 2%;
 
-        &:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
+    &:hover {
+        background: rgba(0, 0, 0, 0.7);
     }
 `;
 

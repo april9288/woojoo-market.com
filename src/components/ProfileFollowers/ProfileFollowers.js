@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -29,13 +31,18 @@ const ProfileFollowers = ({
                         key={val.follower}
                         att={result.length}
                     >
-                        <div>
+                        <div
+                            role="button"
+                            onClick={() =>
+                                history.push(`/profile/${val.user_public_id}`)
+                            }
+                        >
                             <img
                                 alt={val.follower}
-                                src={val.photo100 || defaultPhoto100}
+                                src={val.user_photo100 || defaultPhoto100}
                                 width="100px"
                             />
-                            <p>{val.follower}</p>
+                            <p>{val.email}</p>
                         </div>
                         <div>
                             {result.length === 1 ? (
