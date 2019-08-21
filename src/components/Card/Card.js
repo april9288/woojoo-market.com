@@ -29,7 +29,9 @@ const Card = ({
 }) => {
     return (
         <StyledCardSection>
-            <StyledProfileSection>
+            <StyledProfileSection
+                onClick={() => history.push(`/profile/${user_public_id}`)}
+            >
                 <img src={user_photo100 || defaultPhoto100} alt="user 100" />
                 <section>
                     <h4>{email}</h4>

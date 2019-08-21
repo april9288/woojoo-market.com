@@ -16,9 +16,6 @@ const ProfileFollowers = ({
     FollowFunc,
     history
 }) => {
-    console.log('your following', following);
-    console.log('my following ', groupA);
-
     return (
         <StyledFollowingsSection>
             {following.map(val => {

@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import { ApiFeed } from '../../api/feed';
@@ -17,7 +18,7 @@ import {
 
 import { defaultPhoto100 } from '../../constants/defaultPhotos';
 
-const FeedDetail = ({ match }) => {
+const FeedDetail = ({ match, history }) => {
     const [detail, setDetail] = useState([]);
     const { puuid } = match.params;
     const {
@@ -62,7 +63,9 @@ const FeedDetail = ({ match }) => {
                 <img src={photo550} alt={title} />
             </StyledPhotoSection>
             <StyledRightSection>
-                <StyledProfileSection>
+                <StyledProfileSection
+                    onClick={() => history.push(`/profile/${user_public_id}`)}
+                >
                     <img
                         src={user_photo100 || defaultPhoto100}
                         alt="user 100"
@@ -98,4 +101,4 @@ const FeedDetail = ({ match }) => {
     );
 };
 
-export default FeedDetail;
+export default withRouter(FeedDetail);
