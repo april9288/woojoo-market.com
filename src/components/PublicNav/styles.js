@@ -18,6 +18,10 @@ export const StyledSection = styled.section`
 
     width: 82%;
     margin: auto;
+
+    img {
+        cursor: pointer;
+    }
 `;
 
 export const StyledLogo = styled.p`

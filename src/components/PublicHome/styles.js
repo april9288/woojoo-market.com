@@ -43,13 +43,13 @@ export const StyledText = styled.div`
 
 export const StyledButton = styled.button`
     background: transparent;
-    border: ${props =>
-        props.att ? '2px solid rgba(0,0,0,0.8)' : '2px solid white'};
+    border: ${({ att }) =>
+        att ? '2px solid rgba(0,0,0,0.8)' : '2px solid white'};
     font-size: 1.5rem;
     margin: 1rem 0;
     padding: 1rem;
     cursor: pointer;
-    color: ${props => (props.att ? 'rgba(0,0,0,0.8)' : 'white')};
+    color: ${({ att }) => (att ? 'rgba(0,0,0,0.8)' : 'white')};
 
     &:hover {
         background: #d93c7cfc;
@@ -68,15 +68,19 @@ export const StyledSubSection = styled.section`
 `;
 
 export const StyledText2 = styled.div`
-    color: ${props => (props.att2 || props.att3 ? 'white' : 'rgba(0,0,0,0.8)')};
+    color: ${({ att2, att3 }) => (att2 || att3 ? 'white' : 'rgba(0,0,0,0.8)')};
     font-weight: bold;
-    font-size: ${props => (props.att3 ? '2rem' : '4rem')};
+    font-size: ${({ att3 }) => (att3 ? '2rem' : '4rem')};
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    section {
+        font-size: 2rem;
+    }
 `;
 
 export const StyledImage = styled.img`

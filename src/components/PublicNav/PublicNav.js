@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import {
     StyledFirstLine,
@@ -9,7 +11,7 @@ import {
     StyledDivider
 } from './styles';
 
-const PublicNav = ({ pathname }) => {
+const PublicNav = ({ pathname, history }) => {
     let buttons;
     switch (pathname) {
         case '/login':
@@ -39,10 +41,11 @@ const PublicNav = ({ pathname }) => {
                     src="https://woojoo.s3-us-west-1.amazonaws.com/logo1.png"
                     alt="mylogo"
                     width="120px"
+                    onClick={() => history.push('/')}
                 />
             </StyledSection>
         </Fragment>
     );
 };
 
-export default PublicNav;
+export default withRouter(PublicNav);

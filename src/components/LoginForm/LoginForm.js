@@ -5,6 +5,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { AppContext } from '../../context/appContext';
 import { ApiAuthentication } from '../../api/auth';
 
+import { StyledGuestLogin } from './styles';
+
 const LoginForm = ({
     StyledForm,
     StyledButton,
@@ -42,6 +44,21 @@ const LoginForm = ({
         );
     };
 
+    const GuestLogin = () => {
+        ApiAuthentication(
+            axios,
+            'post',
+            '/api/login',
+            {
+                email: 'kira@g.com',
+                password: 'abc'
+            },
+            auth,
+            setAuth,
+            'LOGIN_ERROR'
+        );
+    };
+
     return (
         <StyledForm onSubmit={handleLogin}>
             <StyledText>Log In</StyledText>
@@ -70,9 +87,14 @@ const LoginForm = ({
                 <StyledWarning>Login Failed</StyledWarning>
             )}
             <StyledButton type="submit">Log in</StyledButton>
+            <StyledGuestLogin onClick={GuestLogin}>
+                <button type="button">Login as Guest</button>
+            </StyledGuestLogin>
+
             <StyledForgotPasswordButton>
                 <Link to="/forgotPassword">Forgot Password?</Link>
             </StyledForgotPasswordButton>
+
             <StyledLink>
                 <p>Don&apos;t have an account? </p>
                 <Link to="/signup">Sign up</Link>

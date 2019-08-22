@@ -28,8 +28,8 @@ const PublicHome = () => (
         <StyledSubSection>
             <StyledText2>
                 Find Your Geek Items
-                <section style={{ fontSize: '2rem' }}>
-                    <p>Discover Items from Our Market</p>
+                <section>
+                    <p>Discover items from our marketplace</p>
                 </section>
                 <Link to="/login">
                     <StyledButton att="shop">Shop Now</StyledButton>
@@ -55,7 +55,7 @@ const PublicHome = () => (
             ></StyledImage>
             <StyledText2>
                 Best Way to Sell Online
-                <section style={{ fontSize: '2rem' }}>
+                <section>
                     <p>Take a photo of items and upload it for money</p>
                 </section>
                 <Link to="/login">

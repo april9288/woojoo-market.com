@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledPageSection = styled.section`
-    min-height: 50vh;
+    min-height: 60vh;
 `;
 
 export const StyledSubSection = styled.section`
@@ -15,9 +15,21 @@ export const StyledSubSection = styled.section`
 `;
 
 export const StyledTableSection = styled.section`
+    display: flex;
+    flex-direction: column;
     margin: 2rem 0;
     display: flex;
     justify-content: center;
+
+    margin-top: ${({ att }) => (att === 'total' ? '5rem' : '0')};
+    border-top: ${({ att }) =>
+        att === 'total' ? '2px solid rgba(0,0,0,0.2)' : 'none'};
+
+    tr {
+        display: ${({ att }) => att === 'total' && 'flex'};
+        align-items: ${({ att }) => att === 'total' && 'center'};
+        justify-content: ${({ att }) => att === 'total' && 'space-around'};
+    }
 
     table {
         font-size: 1.2rem;
