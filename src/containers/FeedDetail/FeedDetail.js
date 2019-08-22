@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import StripeCheckout from 'react-stripe-checkout';
 
 import { ApiFeed } from '../../api/feed';
+import { ApiPayment } from '../../api/stripe';
 import { TimeCalculator } from '../../api/time';
 import {
     StyledSection,
@@ -13,14 +15,19 @@ import {
     StyledProfileSection,
     StyledItemSection,
     StyledDetail,
-    StyledButtons
+    StyledButtonSection,
+    StyledButton
 } from './styles';
 
 import { defaultPhoto100 } from '../../constants/defaultPhotos';
 
 const FeedDetail = ({ match, history }) => {
-    const [detail, setDetail] = useState([]);
+    // this post's uuid
     const { puuid } = match.params;
+
+    const [detail, setDetail] = useState([]);
+    const [payment, setPayment] = useState({});
+
     const {
         id,
         uuid,
@@ -53,6 +60,26 @@ const FeedDetail = ({ match, history }) => {
             'SERVER_ERROR'
         );
     }, []);
+
+    // for stripe variables
+    const price100 = price * 100;
+    const stripeKey = 'pk_test_7R28MGHsBVbfDHxK29d7caPS006mDzfOV7';
+
+    // handling stripe payment result
+    const handleToken = token => {
+        const paymentData = {
+            amount: price100,
+            token
+        };
+        ApiPayment(
+            axios,
+            'post',
+            '/api/payment',
+            paymentData,
+            payment,
+            setPayment
+        );
+    };
 
     return (
         <StyledSection>
@@ -92,10 +119,20 @@ const FeedDetail = ({ match, history }) => {
                     <p>{`Condition : ${condition}`}</p>
                 </StyledDetail>
 
-                <StyledButtons>
-                    <button type="button">Buy Now</button>
-                    <button type="button">Add to Cart</button>
-                </StyledButtons>
+                <StyledButtonSection>
+                    <StyledButton type="button">Add to Cart</StyledButton>
+                </StyledButtonSection>
+
+                <StripeCheckout
+                    token={handleToken}
+                    stripeKey={stripeKey}
+                    currency="USD"
+                    name="WooJoo Market"
+                    description="Pay with Stripe"
+                    image="https://woojoo.s3-us-west-1.amazonaws.com/logo1.png"
+                    label="Pay with Stripe"
+                    amount={price100}
+                />
             </StyledRightSection>
         </StyledSection>
     );

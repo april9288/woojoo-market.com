@@ -77,23 +77,23 @@ export const StyledDetail = styled.section`
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 `;
 
-export const StyledButtons = styled.section`
+export const StyledButtonSection = styled.section`
     margin: 20px 0;
     width: 100%;
     display: flex;
+`;
 
-    button {
-        margin-right: 20px;
-        font-size: 18px;
-        line-height: 44px;
-        border: transparent;
-        color: white;
-        border-radius: 3px;
-        background: #000000e0;
-        cursor: pointer;
+export const StyledButton = styled.button`
+    margin-right: 20px;
+    font-size: 18px;
+    line-height: 44px;
+    border: transparent;
+    color: white;
+    border-radius: 3px;
+    background: #000000e0;
+    cursor: pointer;
 
-        &:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
+    &:hover {
+        background: rgba(0, 0, 0, 0.7);
     }
 `;

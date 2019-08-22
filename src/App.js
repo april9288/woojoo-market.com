@@ -1,12 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { AppContext } from './context/appContext';
+// import { AppContext } from './context/appContext';
 
 import Public from './pages/Public';
 import Login from './pages/Login';
@@ -16,15 +11,19 @@ import Feed from './pages/Feed';
 import NoMatch from './pages/NoMatch';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
+
+import Like from './pages/Like';
+import Cart from './pages/Cart';
+import Order from './pages/Order';
+import Sale from './pages/Sale';
+
 import Settings from './pages/Settings';
 
 const App = () => {
-    const [auth] = useContext(AppContext);
-    const { login } = auth;
-
-    useEffect(() => {
-        console.log('App.js >>>>>', auth);
-    }, [auth]);
+    // const [auth] = useContext(AppContext);
+    // useEffect(() => {
+    //     console.log('App.js >>>>>', auth);
+    // }, [auth]);
 
     return (
         <Router>
@@ -36,6 +35,12 @@ const App = () => {
                 <Route path="/feed" component={Feed} />
                 <Route path="/post" component={Post} />
                 <Route path="/profile" component={Profile} />
+
+                <Route path="/like" component={Like} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/order" component={Order} />
+                <Route path="/sale" component={Sale} />
+
                 <Route path="/settings" component={Settings} />
                 <Route component={NoMatch} />
             </Switch>

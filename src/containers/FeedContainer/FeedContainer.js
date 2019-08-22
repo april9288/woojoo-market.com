@@ -15,8 +15,6 @@ const FeedContainer = () => {
     const [scroll, setScroll] = useState(defaultScroll);
     const { offset, loading } = scroll;
 
-    console.log('feeed : ', feed);
-
     const loadMore = () => {
         setScroll({ ...scroll, loading: true });
         ApiFeed(

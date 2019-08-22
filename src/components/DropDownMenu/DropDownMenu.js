@@ -41,10 +41,10 @@ const DropDownMenu = ({ showMenu, show, history }) => {
                 <StyledDropDownMenu>
                     <Link to="/post">Sell on WJM</Link>
                     <Link to="/profile">My Profile</Link>
-                    <Link to="/likes">My Likes</Link>
+                    <Link to="/like">My Likes</Link>
                     <Link to="/cart">My Cart</Link>
-                    <Link to="/orders">My Orders</Link>
-                    <Link to="/sales">My Sales</Link>
+                    <Link to="/order">My Orders</Link>
+                    <Link to="/sale">My Sales</Link>
                     <Link to="/settings">Account Settings</Link>
                     <button type="button" onClick={logout}>
                         Logout

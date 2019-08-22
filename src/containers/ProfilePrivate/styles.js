@@ -39,10 +39,11 @@ export const StyledTopSubSection = styled.section`
 
 export const StyledButtonSection = styled.section`
     position: absolute;
-    height: 7%;
-    width: 10%;
+    height: 8%;
+    width: 18%;
 
     button {
+        margin: 2%;
         font-size: 1rem;
         height: 40%;
         border: transparent;
@@ -61,6 +62,7 @@ export const StyledMenuSection = styled.section`
     border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 1% 0;
 `;
 
@@ -185,7 +187,8 @@ export const StyledFollowingsCard = styled.section`
             border-radius: 3px;
             cursor: pointer;
             margin: 2%;
-            background: ${({ att }) => (att ? 'rgba(0,0,0,0.2)' : '#000000e0')};
+            background: ${({ att, att2 }) =>
+                att || att2 ? 'rgba(0,0,0,0.2)' : '#000000e0'};
 
             &:hover {
                 background: rgba(0, 0, 0, 0.7);

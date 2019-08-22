@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import { ApiFeed } from '../../api/feed';
@@ -7,6 +8,7 @@ import ProfileDisplayTop from '../../components/ProfileDisplayTop';
 import ProfilePostList from '../../components/ProfilePostList';
 import ProfileFollowers from '../../components/ProfileFollowers';
 import ProfileFollowing from '../../components/ProfileFollowing';
+import FollowButton from '../../components/FollowButton';
 import {
     defaultMenu,
     defaultPostState,
@@ -150,10 +152,16 @@ const ProfilePublic = ({ match }) => {
                         {`${oneMenu} : ${counts[oneMenu]}`}
                     </StyledMenuButton>
                 ))}
+                <FollowButton
+                    groupA={myFollowing.following}
+                    publicUUID={uuid}
+                    UnfollowFunc={UnfollowFunc}
+                    FollowFunc={FollowFunc}
+                />
             </StyledMenuSection>
             <StyledBottomSection>{bottomSection}</StyledBottomSection>
         </StyledSection>
     );
 };
 
-export default ProfilePublic;
+export default withRouter(ProfilePublic);

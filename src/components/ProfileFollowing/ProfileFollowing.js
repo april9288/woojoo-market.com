@@ -30,6 +30,7 @@ const ProfileFollowers = ({
                     <StyledFollowingsCard
                         key={val.followed}
                         att={commonGroup.length}
+                        att2={!groupA}
                     >
                         <div
                             role="button"
