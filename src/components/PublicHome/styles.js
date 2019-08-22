@@ -52,7 +52,7 @@ export const StyledButton = styled.button`
     color: ${({ att }) => (att ? 'rgba(0,0,0,0.8)' : 'white')};
 
     &:hover {
-        background: #d93c7cfc;
+        background: rgba(0, 0, 0, 0.2);
     }
 
     a {

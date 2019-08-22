@@ -26,7 +26,7 @@ export const StyledButton = styled.button`
     color: rgba(0, 0, 0, 0.8);
 
     &:hover {
-        background: #d65db1;
+        background: rgba(0, 0, 0, 0.2);
     }
 `;
 
