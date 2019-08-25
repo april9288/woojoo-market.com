@@ -1,7 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-// import { AppContext } from './context/appContext';
 
 import Public from './pages/Public';
 import Login from './pages/Login';
@@ -19,33 +17,26 @@ import Sale from './pages/Sale';
 
 import Settings from './pages/Settings';
 
-const App = () => {
-    // const [auth] = useContext(AppContext);
-    // useEffect(() => {
-    //     console.log('App.js >>>>>', auth);
-    // }, [auth]);
+const App = () => (
+    <Router>
+        <Switch>
+            <Route exact path="/" component={Public} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgotPassword" component={ForgotPassword} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/feed" component={Feed} />
+            <Route path="/post" component={Post} />
+            <Route path="/profile" component={Profile} />
 
-    return (
-        <Router>
-            <Switch>
-                <Route exact path="/" component={Public} />
-                <Route path="/login" component={Login} />
-                <Route path="/forgotPassword" component={ForgotPassword} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/feed" component={Feed} />
-                <Route path="/post" component={Post} />
-                <Route path="/profile" component={Profile} />
+            <Route path="/like" component={Like} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/order" component={Order} />
+            <Route path="/sale" component={Sale} />
 
-                <Route path="/like" component={Like} />
-                <Route path="/cart" component={Cart} />
-                <Route path="/order" component={Order} />
-                <Route path="/sale" component={Sale} />
-
-                <Route path="/settings" component={Settings} />
-                <Route component={NoMatch} />
-            </Switch>
-        </Router>
-    );
-};
+            <Route path="/settings" component={Settings} />
+            <Route component={NoMatch} />
+        </Switch>
+    </Router>
+);
 
 export default App;
