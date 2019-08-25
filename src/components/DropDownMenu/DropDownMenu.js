@@ -34,8 +34,11 @@ const DropDownMenu = ({ showMenu, show, history }) => {
                     alt="profile"
                     width="50px"
                 />
-                {auth.email}
-                &#9660;
+                <h5>{auth.email}</h5>
+                <img
+                    src="https://woojoo.s3-us-west-1.amazonaws.com/down.png"
+                    alt="down"
+                />
             </StyledDropDownButton>
             {show && (
                 <StyledDropDownMenu>

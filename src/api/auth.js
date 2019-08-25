@@ -16,6 +16,7 @@ export const ApiAuthentication = async (
     ERROR_MESSAGE
 ) => {
     try {
+        console.log('Server location : ', SERVER);
         const res = await axios({
             method,
             url: `${SERVER}${url}`,
@@ -27,6 +28,7 @@ export const ApiAuthentication = async (
             }
         });
         const { login, id, userEmail, uuid, photo100 } = res.data;
+
         setAuth({
             login,
             id,

@@ -8,6 +8,7 @@ export const StyledDropDownButton = styled.button`
     border: transparent;
     display: flex;
     align-items: center;
+    outline: none;
 
     &:hover {
         color: rgba(0, 0, 0, 0.4);
@@ -20,6 +21,14 @@ export const StyledDropDownButton = styled.button`
     img {
         border-radius: 50%;
         margin-right: 12px;
+
+        &:hover {
+            color: rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    h5 {
+        margin: 0 0.5rem;
     }
 `;
 

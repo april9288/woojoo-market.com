@@ -8,7 +8,7 @@ const GlobalFooter = () => {
             <StyledSubSection>
                 <StyledText att="Title">WooJoo Market</StyledText>
                 <StyledText att="Description">
-                    © 2019 Jong-Ho James Kim All Rights Reserved
+                    2019 Jong-Ho James Kim All Rights Reserved
                 </StyledText>
             </StyledSubSection>
         </StyledSection>

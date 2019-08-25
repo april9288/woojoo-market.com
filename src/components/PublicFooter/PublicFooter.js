@@ -28,7 +28,7 @@ const PublicFooter = () => (
                 <p>FAQ</p>
                 <p>Site Map</p>
                 <p>Get Email Update</p>
-                <p>careers</p>
+                <p>Careers</p>
             </section>
 
             <section style={{ margin: '0 4rem' }}>
@@ -68,7 +68,7 @@ const PublicFooter = () => (
             <StyledSection>
                 <StyledText att1={true}>WooJoo Market</StyledText>
                 <StyledText att2={true}>
-                    © 2019 Jong-Ho James Kim All Rights Reserved
+                    2019 Jong-Ho James Kim All Rights Reserved
                 </StyledText>
             </StyledSection>
         </StyledHigherSection>
