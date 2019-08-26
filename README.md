@@ -12,7 +12,7 @@ This is a social commerce marketplace for geek items. Anyone can buy, sell or sh
 - React Router Dom
 
 ## Deployment
-- Registred a domain name on AWS Route 53 ( bought 'woojoo.com' domain )
+- Registered a domain name on AWS Route 53 ( bought 'woojoo.com' domain )
 - SSL Certified by AWS Certificate Manager ( enabled https to provide stronger security )
 - Stored build files in an AWS S3 bucket
 - Served the static files by AWS CloudFront ( reduced the latency by caching in AWS Edge Locations )
@@ -23,6 +23,9 @@ This is a social commerce marketplace for geek items. Anyone can buy, sell or sh
 - [x] pre-connected with the backend API server to reduce the DNS loopkup time ( saved about 180 ms )
 - [x] analyzed bundle.js with webpack-bundle-analyzer, and then totally replaced moment.js with my own code ( reduced up to 50 kb in bundle.js )
 - [x] split bundle.js into small chunks with React lazy to dynamicly import components ( Main chunk has a size of 50 kb )
+
+### Chrome Lighthouse Performance
+![](performance1.png)
 
 ## Unit Test
 > Performed unit testing with Jest & Enzyme
