@@ -20,9 +20,9 @@ This is a social commerce marketplace for geek items. Anyone can buy, sell or sh
 ## Performance Optimization
 - [x] compressed bundle.js with Brotli ( Original 291 kb -> Brotli Compressed 72 kb )
 - [x] resized media files to the actual size users see, and converted to WEBP format ( reduced up to 20 times less in size for each photo )
-- [x] pre-connected with the backend API server to reduce the DNS loopkup time 
+- [x] pre-connected with the backend API server to reduce the DNS loopkup time ( saved about 180 ms )
 - [x] analyzed bundle.js with webpack-bundle-analyzer, and then totally replaced moment.js with my own code ( reduced up to 50 kb in bundle.js )
-- [ ] code splitting by React Lazy
+- [x] split bundle.js into small chunks with React lazy to dynamicly import components ( Main chunk has a size of 50 kb )
 
 ## Unit Test
 > Performed unit testing with Jest & Enzyme
