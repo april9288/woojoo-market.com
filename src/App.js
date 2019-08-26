@@ -1,39 +1,43 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Public from './pages/Public';
-import Login from './pages/Login';
-import ForgotPassword from './pages/ForgotPassword';
-import Signup from './pages/Signup';
-import Feed from './pages/Feed';
-import NoMatch from './pages/NoMatch';
-import Post from './pages/Post';
-import Profile from './pages/Profile';
+const Public = lazy(() => import('./pages/Public'));
+const Login = lazy(() => import('./pages/Login'));
+const Signup = lazy(() => import('./pages/Signup'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 
-import Like from './pages/Like';
-import Cart from './pages/Cart';
-import Order from './pages/Order';
-import Sale from './pages/Sale';
+const Feed = lazy(() => import('./pages/Feed'));
+const Post = lazy(() => import('./pages/Post'));
+const Profile = lazy(() => import('./pages/Profile'));
 
-import Settings from './pages/Settings';
+const Like = lazy(() => import('./pages/Like'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Order = lazy(() => import('./pages/Order'));
+const Sale = lazy(() => import('./pages/Sale'));
+const Settings = lazy(() => import('./pages/Settings'));
+
+const NoMatch = lazy(() => import('./pages/NoMatch'));
 
 const App = () => (
     <Router>
         <Switch>
-            <Route exact path="/" component={Public} />
-            <Route path="/login" component={Login} />
-            <Route path="/forgotPassword" component={ForgotPassword} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/feed" component={Feed} />
-            <Route path="/post" component={Post} />
-            <Route path="/profile" component={Profile} />
+            <Suspense fallback={<section>Loading...</section>}>
+                <Route exact path="/" component={Public} />
 
-            <Route path="/like" component={Like} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/order" component={Order} />
-            <Route path="/sale" component={Sale} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/forgotPassword" component={ForgotPassword} />
 
-            <Route path="/settings" component={Settings} />
+                <Route path="/feed" component={Feed} />
+                <Route path="/post" component={Post} />
+                <Route path="/profile" component={Profile} />
+
+                <Route path="/like" component={Like} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/order" component={Order} />
+                <Route path="/sale" component={Sale} />
+                <Route path="/settings" component={Settings} />
+            </Suspense>
             <Route component={NoMatch} />
         </Switch>
     </Router>
