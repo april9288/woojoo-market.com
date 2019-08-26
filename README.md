@@ -13,7 +13,7 @@ This is a social commerce marketplace for geek items. Anyone can buy, sell or sh
 
 ## Deployment
 - Registred a domain name on AWS Route 53 ( bought 'woojoo.com' domain )
-- SSL Certified by AWS Certificate Manager ( enalbed https to provide stronger security )
+- SSL Certified by AWS Certificate Manager ( enabled https to provide stronger security )
 - Stored build files in an AWS S3 bucket
 - Served the static files by AWS CloudFront ( reduced the latency by caching in AWS Edge Locations )
 
