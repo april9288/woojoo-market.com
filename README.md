@@ -1,5 +1,5 @@
 # WooJoo Market
-> Express.js server for https://www.woojoo-market.com
+> Front-end React.js app for https://www.woojoo-market.com
 
 - [Please click it to see the back-end repo](https://github.com/april9288/wjm-api)
 
