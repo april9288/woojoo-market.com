@@ -42,7 +42,7 @@ This is a social commerce marketplace for geek items. Anyone can buy, sell or sh
 
 ## Linting and Formatting
 - ESLint
--  Prettier
+- Prettier
 - Airbnb Style Guide
 
 ## Related Projects
